@@ -3,16 +3,16 @@
   color: #fff;
 }
 
-mat-drawer {
+.mat-drawer {
   width: 200px;
 }
 
-mat-drawer-container {
+.mat-drawer-container {
   display: block;
   height: 600px;
 }
 
-mat-drawer-content {
+.mat-drawer-content {
   padding: 20px;
   height: 100%;
 }
@@ -23,6 +23,10 @@ mat-drawer-content {
 
 .mat-card {
   height: 400px;
+}
+
+.mat-tab-label-container {
+  border-bottom: 20px none !important;
 }
 
 body {

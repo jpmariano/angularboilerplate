@@ -8,6 +8,9 @@ import { SharedModule } from '../../shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     SharedModule,
     MatSidenavModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule
   ]
 })
 export class DefaultModule { }

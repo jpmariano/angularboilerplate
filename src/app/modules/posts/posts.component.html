@@ -1,15 +1,31 @@
 <mat-card class="example-card">
   <mat-tab-group mat-align-tabs="start">
     <mat-tab label="Users">
+      <ng-template mat-tab-label>
+          <span class="material-icons">group</span>
+          <span>Users</span>
+      </ng-template>
+      <button mat-flat-button color="primary">
+        <span class="material-icons">person_add</span>
+        Primary
+      </button>
 
 
     </mat-tab>
+
     <mat-tab label="Permissions">
-
+    <ng-template mat-tab-label>
+        <span class="material-icons">vpn_key</span>
+        <span>Permissions</span>
+    </ng-template>
 
     </mat-tab>
-    <mat-tab label="Roles">
 
+    <mat-tab label="Roles">
+      <ng-template mat-tab-label>
+        <span class="material-icons">psychology</span>
+        <span>Roles</span>
+    </ng-template>
 
     </mat-tab>
   </mat-tab-group>
