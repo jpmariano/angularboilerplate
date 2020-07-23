@@ -15,7 +15,6 @@ import { DefaultModule } from './layouts/default/default.module';
     BrowserAnimationsModule,
     DefaultModule,
     AppRoutingModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

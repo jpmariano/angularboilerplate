@@ -1,0 +1,40 @@
+@import 'variables';
+
+@mixin defaults {
+
+  .btn {
+    background-color: $black;
+  }
+
+  h1 {
+    color: blueviolet;
+    @media screen and (max-width: 1536px) {
+     color: red;
+    }
+    @media screen and (max-width: 768px) {
+      color: blue;
+     }
+  }
+
+  .mat-toolbar.mat-primary {
+    background: blue !important;
+    color: #fff;
+
+  }
+
+  mat-drawer{
+    width: 350px;
+  }
+
+  mat-drawer-container{
+    display: block;
+    height: 600px ;
+  }
+
+  mat-drawer-content {
+    padding: 20px;
+    height: 100%;
+  }
+
+}
+

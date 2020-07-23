@@ -1,7 +1,39 @@
-
-
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 .btn {
   background-color: #000F;
+}
+
+h1 {
+  color: blueviolet;
+}
+@media screen and (max-width: 1536px) {
+  h1 {
+    color: red;
+  }
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    color: blue;
+  }
+}
+
+.mat-toolbar.mat-primary {
+  background: blue !important;
+  color: #fff;
+}
+
+mat-drawer {
+  width: 350px;
+}
+
+mat-drawer-container {
+  display: block;
+  height: 600px;
+}
+
+mat-drawer-content {
+  padding: 20px;
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */
