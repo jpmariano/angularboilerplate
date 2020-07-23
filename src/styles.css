@@ -1,6 +1,32 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-.btn {
-  background-color: #000F;
+.mat-toolbar.mat-primary {
+  color: #fff;
+}
+
+mat-drawer {
+  width: 200px;
+}
+
+mat-drawer-container {
+  display: block;
+  height: 600px;
+}
+
+mat-drawer-content {
+  padding: 20px;
+  height: 100%;
+}
+
+.material-icons {
+  padding-right: 10px;
+}
+
+.mat-card {
+  height: 400px;
+}
+
+body {
+  height: 100%;
 }
 
 h1 {
@@ -15,25 +41,6 @@ h1 {
   h1 {
     color: blue;
   }
-}
-
-.mat-toolbar.mat-primary {
-  background: blue !important;
-  color: #fff;
-}
-
-mat-drawer {
-  width: 350px;
-}
-
-mat-drawer-container {
-  display: block;
-  height: 600px;
-}
-
-mat-drawer-content {
-  padding: 20px;
-  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */
