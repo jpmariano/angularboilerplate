@@ -8,7 +8,7 @@
 
 .mat-drawer-container{
   display: block;
-  height: 600px ;
+  height: 100% ;
 }
 
 .mat-drawer-content {
@@ -21,9 +21,22 @@
 }
 
 .mat-card {
-  height: 400px;
+  height: 500px;
 }
 
 .mat-tab-label-container {
   border-bottom: 20px none !important;
 }
+
+.mat-tab-body-wrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.mat-form-field {
+  padding-right: 10px;
+}
+
+
+
+
