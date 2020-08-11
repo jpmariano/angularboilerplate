@@ -2,19 +2,15 @@
   <h1>Users</h1>
   <div class="card w-100">
     <div class="card-body">
-      <ul
-        class="nav nav-pills flex-column flex-sm-row"
-        id="myTab"
-        role="tablist"
-      >
+      <ul class="nav nav-pills mb-2" id="myTab" role="tablist">
         <li class="nav-item">
           <a
             class="nav-link active"
             id="home-tab"
             data-toggle="tab"
-            href="#users"
+            href="#home"
             role="tab"
-            aria-controls="users"
+            aria-controls="home"
             aria-selected="true"
             >Users</a
           >
@@ -24,9 +20,9 @@
             class="nav-link"
             id="profile-tab"
             data-toggle="tab"
-            href="#permissions"
+            href="#profile"
             role="tab"
-            aria-controls="permissions"
+            aria-controls="profile"
             aria-selected="false"
             >Permissions</a
           >
@@ -36,18 +32,25 @@
             class="nav-link"
             id="contact-tab"
             data-toggle="tab"
-            href="#roles"
+            href="#contact"
             role="tab"
-            aria-controls="roles"
+            aria-controls="contact"
             aria-selected="false"
             >Roles</a
           >
         </li>
       </ul>
-      <hr class="mt-0" />
+
       <div class="tab-content" id="myTabContent">
-        <!-- User Tab -->
+
+        <!-- Users -->
         <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <div
           class="tab-pane fade show active"
           id="users"
           role="tabpanel"
@@ -122,9 +125,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let user of users">
-                <td>{{ user.name}}</td>
+                <td>{{ user.name }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.status == 1? 'Active' : 'Inactive' }}</td>
+                <td>{{ user.status == 1 ? "Active" : "Inactive" }}</td>
                 <td>
                   <button class="btn btn-primary mx-1">
                     <i class="fa fa-eye"> </i>
@@ -137,17 +140,17 @@
                   </button>
                 </td>
               </tr>
-           </tbody>
+            </tbody>
           </table>
-          {{hello}}
+        </div>
         </div>
 
-        <!-- Permission Tab-->
+        <!-- Permission -->
         <div
           class="tab-pane fade"
-          id="permissions"
+          id="profile"
           role="tabpanel"
-          aria-labelledby="permissions-tab"
+          aria-labelledby="profile-tab"
         >
           <button class="btn btn-primary mb-2">
             <i class="fa fa-plus"></i>
@@ -157,16 +160,16 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col" style="width: 40%;">Permission</th>
-                <th scope="col" style="width: 20%;">ROLE_AUTHENTICATED</th>
-                <th scope="col" style="width: 20%;">ROLE_MAIN</th>
-                <th scope="col" style="width: 20%;">ROLE_ADMIN</th>
+                <th scope="col">Permission</th>
+                <th *ngFor="let role of roles" class="text-center">
+                  {{ role.name }}
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>ROLE_WRITE</td>
-                <td>
+              <tr *ngFor="let permission of permissions">
+                <td>{{ permission.name }}</td>
+                <td class="text-center">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -174,7 +177,7 @@
                     id="defaultCheck1"
                   />
                 </td>
-                <td>
+                <td class="text-center">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -182,7 +185,7 @@
                     id="defaultCheck1"
                   />
                 </td>
-                <td>
+                <td class="text-center">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -190,22 +193,50 @@
                     id="defaultCheck1"
                   />
                 </td>
+              </tr>
             </tbody>
           </table>
+          <button class="btn btn-primary">
+            Save Permissions
+          </button>
         </div>
 
-        <!-- Roles Tab -->
+        <!-- Roles -->
         <div
           class="tab-pane fade"
-          id="roles"
+          id="contact"
           role="tabpanel"
-          aria-labelledby="roles-tab"
+          aria-labelledby="contact-tab"
         >
-        <button class="btn btn-primary">
-          <i class="fa fa-plus"></i>
-          Add User
-        </button>
-          Test is real hahaha
+          <button class="btn btn-primary mb-2">
+            <i class="fa fa-plus"></i>
+            Add Role
+          </button>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Roles</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let role of roles">
+                <td>{{ role.name }}</td>
+                <td>
+                  <button class="btn btn-primary mx-1">
+                    <i class="fa fa-eye"> </i>
+                  </button>
+                  <button class="btn btn-warning mx-1">
+                    <i class="fa fa-pencil text-white"> </i>
+                  </button>
+                  <button class="btn btn-danger mx-1">
+                    <i class="fa fa-trash"> </i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

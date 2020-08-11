@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders} from '@angular/common/http';
 
-import { User } from '../modules/model/user.model';
+import { User } from '../model/user.model';
 
 
 const httpOptions : any    = {
@@ -24,7 +24,9 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  getAll(): Observable<User[]> {
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
+
+
 }
