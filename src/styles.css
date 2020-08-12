@@ -1,59 +1,6 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-.mat-toolbar.mat-primary {
-  color: #fff;
-}
-
-.mat-drawer {
-  width: 200px;
-}
-
-.mat-drawer-container {
-  display: block;
-  height: 100%;
-}
-
-.mat-drawer-content {
-  padding: 20px;
-  height: 100%;
-}
-
-.material-icons {
-  padding-right: 10px;
-}
-
-.mat-card {
-  height: 500px;
-}
-
-.mat-tab-label-container {
-  border-bottom: 20px none !important;
-}
-
-.mat-tab-body-wrapper {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.mat-form-field {
-  padding-right: 10px;
-}
-
 body {
   height: 100%;
-}
-
-h1 {
-  color: blueviolet;
-}
-@media screen and (max-width: 1536px) {
-  h1 {
-    color: red;
-  }
-}
-@media screen and (max-width: 768px) {
-  h1 {
-    color: blue;
-  }
 }
 
 .raised-button {
@@ -108,6 +55,10 @@ h1 {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+.nav.nav-pills .nav-item {
+  width: 200px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

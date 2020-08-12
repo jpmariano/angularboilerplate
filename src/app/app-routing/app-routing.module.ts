@@ -8,10 +8,10 @@ import { LoginComponent } from '../login/login/login.component';
 
 const routes: Routes = [
   {
-      path: '',
+      path: 'admin',
       component: DefaultComponent,
       children: [{
-        path: '',
+        path: 'dashboard',
         component: DashboardComponent
       },
       {
@@ -19,7 +19,9 @@ const routes: Routes = [
         component: UsersComponent
       }
     ]
-  }
+  },
+  { path: 'admin', redirectTo: '/admin/dashboard'},
+  { path: '**', redirectTo: '/admin/dashboard' },
 ];
 
 @NgModule({

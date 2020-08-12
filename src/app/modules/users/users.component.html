@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <h1>Users</h1>
+  <h1 class="text-secondary">{{ title }}</h1>
   <div class="card w-100">
     <div class="card-body">
-      <ul class="nav nav-pills mb-2" id="myTab" role="tablist">
+      <ul class="nav nav-pills" id="myTab" role="tablist">
         <li class="nav-item">
           <a
             class="nav-link active"
@@ -12,7 +12,8 @@
             role="tab"
             aria-controls="home"
             aria-selected="true"
-            >Users</a
+            (click) = "onName(0)"
+            > <i class="fa fa-users"></i> Users</a
           >
         </li>
         <li class="nav-item">
@@ -24,7 +25,8 @@
             role="tab"
             aria-controls="profile"
             aria-selected="false"
-            >Permissions</a
+            (click) = "onName(1)"
+            > <i class="fa fa-key"></i> Permissions</a
           >
         </li>
         <li class="nav-item">
@@ -36,10 +38,12 @@
             role="tab"
             aria-controls="contact"
             aria-selected="false"
-            >Roles</a
+            (click) = "onName(2)"
+            > <i class="fa fa-cogs"></i> Roles</a
           >
         </li>
       </ul>
+      <hr class="mt-0">
 
       <div class="tab-content" id="myTabContent">
 
@@ -85,10 +89,9 @@
               >
               <select class="form-control" id="roles">
                 <option selected="selected">---Any---</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option *ngFor = "let role of roles; let i = index"
+                > {{ role.name | removeUnderscore | titlecase}}
+                </option>
               </select>
             </div>
             <div class="form-group d-block mx-1">
@@ -97,10 +100,9 @@
               >
               <select class="form-control" id="permission">
                 <option selected="selected">---Any---</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option *ngFor = "let permission of permissions; let i = index"
+                > {{ permission.name | removeUnderscore | titlecase}}
+                </option>
               </select>
             </div>
           </form>
@@ -162,13 +164,13 @@
               <tr>
                 <th scope="col">Permission</th>
                 <th *ngFor="let role of roles" class="text-center">
-                  {{ role.name }}
+                  {{ role.name | removeUnderscore | titlecase}}
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let permission of permissions">
-                <td>{{ permission.name }}</td>
+                <td>{{ permission.name | removeUnderscore | titlecase }}</td>
                 <td class="text-center">
                   <input
                     class="form-check-input"
@@ -222,7 +224,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let role of roles">
-                <td>{{ role.name }}</td>
+                <td>{{ role.name | removeUnderscore | titlecase}}</td>
                 <td>
                   <button class="btn btn-primary mx-1">
                     <i class="fa fa-eye"> </i>

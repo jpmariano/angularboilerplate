@@ -6,16 +6,6 @@ import { HttpHeaders} from '@angular/common/http';
 
 import { User } from '../model/user.model';
 
-
-const httpOptions : any    = {
-  headers: new HttpHeaders({
-    //'Content-Type':  'application/json',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET',
-    'Access-Control-Allow-Origin': '*'
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +17,5 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
-
 
 }

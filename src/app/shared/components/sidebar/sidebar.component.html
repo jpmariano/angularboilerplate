@@ -1,13 +1,15 @@
-<div class="sidebar-heading bg-primary text-white text-center">Angular Boilerplate</div>
-<div class="list-group list-group-flush">
+<div class="sidebar-heading text-white bg-primary text-center">Angular Boilerplate</div>
+<div class="list-group list-group-flush border-top">
   <a
-    [routerLink]="['/']"
-    class="list-group-item list-group-item-action bg-white"
+    [routerLink]="['/admin/dashboard']"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action"
     > <i class="fa fa-dashboard"></i> Dashboard</a
   >
   <a
-    [routerLink]="['/users']"
-    class="list-group-item list-group-item-action bg-white"
+    [routerLink]="['/admin/users']"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action"
     > <i class="fa fa-users"></i> Users</a
   >
 </div>

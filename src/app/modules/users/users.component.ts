@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { Pipe, PipeTransform } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { User } from '../../core/model/user.model';
 import { Permission } from '../../core/model/permission.model';
@@ -25,12 +27,9 @@ export class UsersComponent implements OnInit {
   users: User[];
   permissions: Permission[];
   roles: Role[];
+  title = 'Users';
+  titles = ['Users', 'Permissions', 'Roles'];
 
-  // USER_DATA: Userz[]= [
-  //   {name: "John Paul Mariano", email: "jmariano@webupps.com", status: "Active" },
-  //   {name: "Jeff Zeejay Belamide", email: "zeejaybelamide@gmail.com", status: "Active" },
-  //   {name: "Juan dela Cruz", email: "juandela@cruz.com", status: "Active" },
-  // ]
 
   constructor(private userService: UserService,
               private permissionService: PermissionService,
@@ -59,4 +58,15 @@ export class UsersComponent implements OnInit {
             })
   }
 
+  onName(id: number){
+    return this.title = this.titles[id];
+  }
+
+}
+
+@Pipe({ name: 'removeUnderscore' })
+export class RemoveUnderscorePipe implements PipeTransform {
+  transform(value: any, args?: any): any {
+    return value.replace(/_/g, " ");
+  }
 }
