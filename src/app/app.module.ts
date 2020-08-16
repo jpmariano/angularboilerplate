@@ -1,28 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DefaultModule } from './layouts/default/default.module';
+import { FullWidthModule } from './layouts/fullwidth/fullwidth.module';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing/app-routing.module';
-import { DefaultModule } from './layouts/default/default.module';
-import { LoginComponent } from './login/login/login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     DefaultModule,
+    FullWidthModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

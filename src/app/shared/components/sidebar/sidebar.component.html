@@ -1,15 +1,37 @@
-<div class="sidebar-heading text-white bg-primary text-center">Angular Boilerplate</div>
-<div class="list-group list-group-flush border-top">
-  <a
-    [routerLink]="['/admin/dashboard']"
-    routerLinkActive="active"
-    class="list-group-item list-group-item-action"
-    > <i class="fa fa-dashboard"></i> Dashboard</a
+<div
+  class="bg-white border-right header"
+  id="sidebar-wrapper"
+  [hidden]=""
+  [ngClass]="onToggle ? 'sidebar-secondary' : 'sidebar-primary'"
+>
+  <div
+    class="sidebar-heading text-black bg-white font-weight-bold d-flex justify-content-between"
   >
-  <a
-    [routerLink]="['/admin/users']"
-    routerLinkActive="active"
-    class="list-group-item list-group-item-action"
-    > <i class="fa fa-users"></i> Users</a
-  >
+    <span *ngIf="!onToggle">
+      Boilerplate
+    </span>
+    <a (click)="toggleSidebar()" class="text-decoration-none"  style="cursor: pointer;">
+      <i class="fa fa-align-justify"></i>
+    </a>
+  </div>
+  <div class="list-group list-group-flush border-top">
+    <a
+      [routerLink]="['/admin/dashboard']"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action border-right"
+      [ngClass]="onToggle ? 'sidebar-secondary' : 'sidebar-primary'"
+    >
+      <i class="fa fa-dashboard"></i>
+      <span [ngClass]="onToggle ? 'd-none' : ''"> Dashboard </span>
+    </a>
+    <a
+      [routerLink]="['/admin/users']"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action border-right"
+      [ngClass]="onToggle ? 'sidebar-secondary' : 'sidebar-primary'"
+    >
+      <i class="fa fa-users"></i>
+      <span [ngClass]="onToggle ? 'd-none' : ''"> Users </span>
+    </a>
+  </div>
 </div>

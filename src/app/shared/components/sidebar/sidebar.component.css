@@ -1,0 +1,16 @@
+.sidebar-primary {
+  width: 240px;
+
+}
+
+.sidebar-secondary {
+  width: 60px;
+}
+
+.sidebar-secondary.header {
+  transition: width 2s;
+}
+
+.sidebar-primary.header {
+  transition: width 2s;
+}

@@ -1,0 +1,97 @@
+<div class="container vh-100 d-flex align-items-center">
+  <div class="card mb-5 mx-auto shadow border rounded-0" style="width: 35rem;">
+    <div class="card-body mx-5">
+      <h4 class="text-center">Sign up</h4>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+          <div formGroupName="signupData">
+            <div class="form-row form-group">
+              <div class="col-6">
+                <label for="firstName">First Name</label>
+                <input
+                  type="text"
+                  formControlName="firstName"
+                  class="form-control"
+                  name="firstName"
+                />
+                <span
+                  *ngIf="
+                    !signupForm.get('signupData.firstName').valid &&
+                    signupForm.get('signupData.firstName').touched
+                  "
+                >
+                  <span class="text-danger small">
+                    This field is required!
+                  </span>
+                </span>
+              </div>
+              <div class="col-6">
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  formControlName="lastName"
+                  class="form-control"
+                  name="lastName"
+                />
+                <span
+                  *ngIf="
+                    !signupForm.get('signupData.lastName').valid &&
+                    signupForm.get('signupData.lastName').touched
+                  "
+                >
+                  <span class="text-danger small">
+                    This field is required!
+                  </span>
+                </span>
+              </div>
+              <div class="form-group"></div>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                formControlName="username"
+                class="form-control"
+                name="username"
+              />
+              <span
+                *ngIf="
+                  !signupForm.get('signupData.username').valid &&
+                  signupForm.get('signupData.username').touched
+                "
+              >
+                <span class="text-danger small"> This field is required! </span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+                name="password"
+              />
+              <span
+                *ngIf="
+                  !signupForm.get('signupData.password').valid &&
+                  signupForm.get('signupData.password').touched
+                "
+              >
+                <span class="text-danger small"> This field is required! </span>
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block">
+              <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+              Register
+            </button>
+            <p class="text-center mt-2">
+              <a routerLink="/admin/login" class="text-decoration-none">Cancel</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

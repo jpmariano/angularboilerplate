@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from '../layouts/default/default.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard.component';
 import { UsersComponent } from '../modules/users/users.component';
-import { LoginComponent } from '../login/login/login.component';
+import { FullWidthComponent } from '../layouts/fullwidth/fullwidth.component';
+import { LoginComponent } from '../auth/component/login/login.component';
+import { RegisterComponent } from '../auth/component/register/register.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,17 @@ const routes: Routes = [
         component: UsersComponent
       }
     ]
+  },
+  {
+    path: 'admin',
+    component: FullWidthComponent,
+    children: [{
+      path: 'login',
+      component: LoginComponent
+    }, {
+      path: 'register',
+      component: RegisterComponent
+    }]
   },
   { path: 'admin', redirectTo: '/admin/dashboard'},
   { path: '**', redirectTo: '/admin/dashboard' },
