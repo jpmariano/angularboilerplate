@@ -6,7 +6,12 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  isToggled = false;
   constructor() {}
 
   ngOnInit(): void {}
+
+  onToggled(){
+    this.isToggled = !this.isToggled;
+  }
 }

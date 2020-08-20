@@ -7,11 +7,13 @@ import { FullWidthComponent } from '../layouts/fullwidth/fullwidth.component';
 import { LoginComponent } from '../auth/component/login/login.component';
 import { RegisterComponent } from '../auth/component/register/register.component';
 
+import { AuthGuard } from '../auth/authentication.guard';
 
 const routes: Routes = [
   {
       path: 'admin',
       component: DefaultComponent,
+      canActivate: [AuthGuard],
       children: [{
         path: 'dashboard',
         component: DashboardComponent

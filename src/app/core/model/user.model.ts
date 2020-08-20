@@ -1,17 +1,18 @@
 export class User {
-  uid: number;
-  name: string;
-  username: string;
-  status: number;
-  verrified: number;
-  vkey: string;
-  created: number;
-  changed: number;
-  access: number;
-  login: number;
-  mid: string[];
-  manageUsers: string[];
-  user_roles: string[];
-  user_meta: string[];
+
   // password: string;
+  constructor(public uid: number,
+    public name: string,
+    public username: string,
+    public status: number,
+    public verrified: number,
+    public vkey: string,
+    public created: number,
+    public changed: number,
+    public access: number,
+    public login: number,
+    public mid: string[],
+    public manageUsers: string[],
+    public user_roles: string[],
+    public user_meta: string[]) {}
 }
