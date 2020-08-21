@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DropdownDirective } from './dropdown.directive';
+import { LoginComponent } from '../auth/component/login/login.component';
 
 @NgModule({
   declarations: [
