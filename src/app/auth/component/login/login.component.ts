@@ -42,13 +42,9 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (resData) => {
-          if(resData['body']){
-            this.authService.auth = true;
-          } else {
-            this.authService.auth = false;
-          }
-          console.log(resData['body']);
-          this.authService.user.next(resData['body'].user['0'].uid);
+          console.log(resData);
+          // console.log(resData['body']);
+          this.authService.user.next(resData['body'].user['0']);
           this.isLoading = false;
           this.router.navigate(['./dashboard']);
         },
@@ -58,6 +54,5 @@ export class LoginComponent implements OnInit {
           this.error = errorMessage;
         }
       );
-    this.auth = true;
   }
 }

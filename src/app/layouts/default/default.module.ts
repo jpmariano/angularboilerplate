@@ -6,12 +6,14 @@ import { UsersComponent, RemoveUnderscorePipe } from '../../modules/users/users.
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserDetailsComponent } from 'src/app/modules/users/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     DashboardComponent,
     UsersComponent,
+    UserDetailsComponent,
     RemoveUnderscorePipe
   ],
   imports: [

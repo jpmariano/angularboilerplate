@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+  HttpHeaders,
+} from '@angular/common/http';
 import { first, catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject, Observable } from 'rxjs';
 
@@ -30,13 +35,54 @@ export class AuthenticationService {
       .pipe(
         first(),
         tap((resData) => {
-          this.handleAuth(resData['body'].user['0']);
+          console.log(resData);
+          this.token = resData['body'].key['0'];
+          this.handleAuth(resData['body'].user['0'], this.token);
         }),
         catchError(this.handleError)
       );
   }
 
-  signUp(username: string, password: string) {}
+  signUp(name: string, username: string, password: string) {
+    return this.httpClient
+      .post(
+        `${this.baseUrl}/register`,
+        {
+          name: name,
+          username: username,
+          password: password,
+        },
+        {
+          params: new HttpParams().set('register', '1'),
+        }
+      )
+      .pipe(
+        first(),
+        tap((resData) => {
+          this.token = resData['body'].key['0'];
+          this.handleAuth(resData['body'].user['0'], this.token);
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  userVerify(vkey: string, token: string) {
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    });
+    return this.httpClient
+      .get(`${this.baseUrl}/verify/${vkey}`, {
+        headers: headers,
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+
+  getToken() {
+    return localStorage.getItem('token') != null ? localStorage.getItem('token') : '';
+  }
 
   logOut() {
     this.auth = false;
@@ -46,9 +92,9 @@ export class AuthenticationService {
     return throwError('An unknown error occurs');
   }
 
-  autoLogin(){
+  autoLogin() {
     const userData: User = JSON.parse(localStorage.getItem('userData'));
-    if(!userData){
+    if (!userData) {
       return;
     }
 
@@ -69,12 +115,12 @@ export class AuthenticationService {
       userData.user_meta
     );
 
-    if(loadedUser){
+    if (loadedUser) {
       this.user.next(loadedUser);
     }
   }
 
-  handleAuth(userData: User) {
+  handleAuth(userData: User, token: string) {
     const user = new User(
       userData.uid,
       userData.name,
@@ -92,14 +138,16 @@ export class AuthenticationService {
       userData.user_meta
     );
     this.user.next(user);
-    localStorage.setItem('userData',JSON.stringify(user));
+    localStorage.setItem('token', token);
+    localStorage.setItem('userData', JSON.stringify(user));
     console.log('Inside on Auth');
     console.log(userData);
   }
 
-  logout(){
+  logout() {
     this.user.next(null);
     this.router.navigate(['/admin/login']);
     localStorage.removeItem('userData');
+    localStorage.removeItem('token');
   }
 }
