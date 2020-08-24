@@ -1,0 +1,82 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add User</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div ngModelGroup #signupData="ngModelGroup">
+        <div class="form-row form-group">
+          <div class="col-6">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              ngModel
+            />
+          </div>
+          <div class="col-6">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              ngModel
+            />
+          </div>
+          <div class="form-group"></div>
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            ngModel
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            ngModel
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">
+          Add User
+        </button>
+        <p class="text-center mt-2">
+          <a routerLink="/admin/login" class="text-decoration-none"
+            >Cancel</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="open(content)">
+  <i class="fa fa-plus"></i>
+  Add User
+</button>

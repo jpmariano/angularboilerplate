@@ -9,13 +9,11 @@ import { DefaultModule } from './layouts/default/default.module';
 import { FullWidthModule } from './layouts/fullwidth/fullwidth.module';
 
 import { AppComponent } from './app.component';
-import { UserDetailsComponent } from './modules/users/user-details/user-details.component';
 import { AuthInterceptor } from './auth/authentication-interceptor.service';
 
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,13 +23,15 @@ import { AuthInterceptor } from './auth/authentication-interceptor.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

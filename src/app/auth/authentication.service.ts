@@ -12,6 +12,14 @@ import { UserService } from '../core/service/user.service';
 import { User } from '../core/model/user.model';
 import { Router } from '@angular/router';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    responseType: 'json',
+    'Access-Control-Allow-Origin': '*',
+  }),
+};
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   user = new BehaviorSubject<User>(null);
@@ -67,21 +75,17 @@ export class AuthenticationService {
   }
 
   userVerify(vkey: string, token: string) {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json',
-      Authorization: 'Bearer ' + token,
-    });
     return this.httpClient
-      .get(`${this.baseUrl}/verify/${vkey}`, {
-        headers: headers,
-      })
+      .get(`${this.baseUrl}/verify/vkey/${vkey}`, httpOptions)
       .subscribe((response) => {
         console.log(response);
       });
   }
 
   getToken() {
-    return localStorage.getItem('token') != null ? localStorage.getItem('token') : '';
+    return localStorage.getItem('token') != null
+      ? localStorage.getItem('token')
+      : '';
   }
 
   logOut() {

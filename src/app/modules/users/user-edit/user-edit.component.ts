@@ -1,22 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+
 import { User } from 'src/app/core/model/user.model';
+import { UserService } from 'src/app/core/service/user.service';
 
 @Component({
-  selector: 'app-user-details',
-  templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css'],
+  selector: 'app-user-edit',
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.css'],
 })
-export class UserDetailsComponent implements OnInit {
+export class UserEditComponent implements OnInit {
+  @ViewChild('f') editForm: NgForm;
+
   @Input() user: User;
   @Input() id: number;
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private userService: UserService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   open(content) {
     this.modalService
@@ -45,5 +52,11 @@ export class UserDetailsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  onSubmit(f: NgForm) {
+    this.user.name = f.value['userData'].name;
+    this.user.username = f.value['userData'].username;
+    this.userService.updateUser(this.user, this.user.uid);
   }
 }

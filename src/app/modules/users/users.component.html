@@ -60,10 +60,7 @@
           role="tabpanel"
           aria-labelledby="users-tab"
         >
-          <button class="btn btn-primary">
-            <i class="fa fa-plus"></i>
-            Add User
-          </button>
+        <app-user-add></app-user-add>
           <form class="form-inline mb-2">
             <div class="form-group d-block mr-1">
               <label class="justify-content-start small" for="username"
@@ -132,12 +129,8 @@
                 <td>{{ user.status == 1 ? "Active" : "Inactive" }}</td>
                 <td>
                   <app-user-details [user]='user' [id]='i'></app-user-details>
-                  <button class="btn btn-warning mx-1">
-                    <i class="fa fa-pencil text-white"> </i>
-                  </button>
-                  <button class="btn btn-danger mx-1">
-                    <i class="fa fa-trash"> </i>
-                  </button>
+                  <app-user-edit [user]='user' [id]='i'></app-user-edit>
+                  <app-user-delete [user]='user' [id]='i'></app-user-delete>
                 </td>
               </tr>
             </tbody>

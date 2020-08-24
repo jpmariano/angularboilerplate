@@ -1,0 +1,56 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">User Edit</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            value="user.name"
+            ngModel="{{user.name}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            value="user.username"
+            ngModel="{{user.username}}"
+            required
+            email
+            #email="ngModel"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="submit"
+          class="btn btn-outline-warning"
+          [disabled]='f.invalid'
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-warning" (click)="open(content)">
+  <i class="fa fa-pencil text-white"> </i>
+</button>

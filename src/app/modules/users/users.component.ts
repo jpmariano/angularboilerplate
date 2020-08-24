@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { Pipe, PipeTransform } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { User } from '../../core/model/user.model';
 import { Permission } from '../../core/model/permission.model';
@@ -9,6 +8,7 @@ import { UserService } from '../../core/service/user.service';
 import { PermissionService } from '../../core/service/permission.service';
 import { RoleService } from '../../core/service/role.service';
 import { Role } from 'src/app/core/model/role.model';
+import { Subscription } from 'rxjs';
 
 // interface Userz {
 //   name: string;
@@ -22,7 +22,7 @@ import { Role } from 'src/app/core/model/role.model';
   styleUrls: ['./users.component.css']
 })
 
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy{
   currentUser: User;
   users: User[];
   permissions: Permission[];
@@ -30,18 +30,20 @@ export class UsersComponent implements OnInit {
   title = 'Users';
   titles = ['Users', 'Permissions', 'Roles'];
 
+  usersSubs: Subscription;
 
   constructor(private userService: UserService,
               private permissionService: PermissionService,
               private roleService: RoleService) { }
 
   ngOnInit(){
-    this.userService.getAllUsers()
-            .pipe(first())
-            .subscribe(users => {
-              this.users = users;
-              console.log(users);
-            });
+    this.userService.getAllUsers();
+    this.usersSubs = this.userService.usersChanged.subscribe(
+      (users: User[]) =>
+        this.users = users
+    );
+    this.users = this.userService.getUsers();
+
 
     this.permissionService.getAllPermissions()
             .pipe(first())
@@ -56,6 +58,10 @@ export class UsersComponent implements OnInit {
               this.roles = roles;
               console.log(roles);
             })
+  }
+
+  ngOnDestroy(){
+    this.usersSubs.unsubscribe();
   }
 
   onName(id: number){
