@@ -31,6 +31,7 @@ export class UsersComponent implements OnInit, OnDestroy{
   titles = ['Users', 'Permissions', 'Roles'];
 
   usersSubs: Subscription;
+  rolesSubs: Subscription;
 
   constructor(private userService: UserService,
               private permissionService: PermissionService,
@@ -52,12 +53,14 @@ export class UsersComponent implements OnInit, OnDestroy{
               console.log(permissions);
             });
 
-    this.roleService.getAllRoles()
-            .pipe(first())
-            .subscribe(roles => {
-              this.roles = roles;
-              console.log(roles);
-            })
+    this.roleService.getAllRoles();
+    this.rolesSubs = this.roleService.rolesChanged.subscribe(
+      (roles: Role[]) =>
+        this.roles = roles
+    );
+    this.roles = this.roleService.getRoles();
+
+
   }
 
   ngOnDestroy(){

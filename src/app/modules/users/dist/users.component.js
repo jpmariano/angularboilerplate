@@ -36,12 +36,11 @@ var UsersComponent = /** @class */ (function () {
             _this.permissions = permissions;
             console.log(permissions);
         });
-        this.roleService.getAllRoles()
-            .pipe(operators_1.first())
-            .subscribe(function (roles) {
-            _this.roles = roles;
-            console.log(roles);
+        this.roleService.getAllRoles();
+        this.rolesSubs = this.roleService.rolesChanged.subscribe(function (roles) {
+            return _this.roles = roles;
         });
+        this.roles = this.roleService.getRoles();
     };
     UsersComponent.prototype.ngOnDestroy = function () {
         this.usersSubs.unsubscribe();

@@ -15,6 +15,10 @@ import { UserDetailsComponent } from 'src/app/modules/users/user-details/user-de
 import { UserEditComponent } from 'src/app/modules/users/user-edit/user-edit.component';
 import { UserDeleteComponent } from 'src/app/modules/users/user-delete/user-delete.component';
 import { UserAddComponent } from 'src/app/modules/users/user-add/user-add.component';
+import { RolesComponent } from 'src/app/modules/roles/roles.component';
+import { PermissionsComponent } from 'src/app/modules/permissions/permissions.component';
+import { RoleAddComponent } from 'src/app/modules/roles/role-add/role-add.component';
+import { PermissionAddComponent } from 'src/app/modules/permissions/permission-add/permission-add.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { UserAddComponent } from 'src/app/modules/users/user-add/user-add.compon
     UserAddComponent,
     UserEditComponent,
     UserDeleteComponent,
-    RemoveUnderscorePipe
+    RemoveUnderscorePipe,
+    RolesComponent,
+    RoleAddComponent,
+    PermissionsComponent,
+    PermissionAddComponent
   ],
   imports: [CommonModule, RouterModule, SharedModule, NgbAlertModule, FormsModule, ReactiveFormsModule],
 })

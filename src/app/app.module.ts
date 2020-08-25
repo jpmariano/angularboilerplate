@@ -10,6 +10,8 @@ import { FullWidthModule } from './layouts/fullwidth/fullwidth.module';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/authentication-interceptor.service';
+import { PermissionAddComponent } from './modules/permissions/permission-add/permission-add.component';
+import { RoleAddComponent } from './modules/roles/role-add/role-add.component';
 
 
 @NgModule({

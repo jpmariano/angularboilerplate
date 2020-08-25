@@ -12,8 +12,9 @@
             role="tab"
             aria-controls="home"
             aria-selected="true"
-            (click) = "onName(0)"
-            > <i class="fa fa-users"></i> Users</a
+            (click)="onName(0)"
+          >
+            <i class="fa fa-users"></i> Users</a
           >
         </li>
         <li class="nav-item">
@@ -25,8 +26,9 @@
             role="tab"
             aria-controls="profile"
             aria-selected="false"
-            (click) = "onName(1)"
-            > <i class="fa fa-key"></i> Permissions</a
+            (click)="onName(1)"
+          >
+            <i class="fa fa-key"></i> Permissions</a
           >
         </li>
         <li class="nav-item">
@@ -38,15 +40,15 @@
             role="tab"
             aria-controls="contact"
             aria-selected="false"
-            (click) = "onName(2)"
-            > <i class="fa fa-cogs"></i> Roles</a
+            (click)="onName(2)"
+          >
+            <i class="fa fa-cogs"></i> Roles</a
           >
         </li>
       </ul>
-      <hr class="mt-0">
+      <hr class="mt-0" />
 
       <div class="tab-content" id="myTabContent">
-
         <!-- Users -->
         <div
           class="tab-pane fade show active"
@@ -55,87 +57,91 @@
           aria-labelledby="home-tab"
         >
           <div
-          class="tab-pane fade show active"
-          id="users"
-          role="tabpanel"
-          aria-labelledby="users-tab"
-        >
-        <app-user-add></app-user-add>
-          <form class="form-inline mb-2">
-            <div class="form-group d-block mr-1">
-              <label class="justify-content-start small" for="username"
-                >Username</label
-              >
-              <input type="text" id="username" class="form-control" />
+            class="tab-pane fade show active"
+            id="users"
+            role="tabpanel"
+            aria-labelledby="users-tab"
+          >
+            <app-user-add></app-user-add>
+            <form class="form-inline mb-2">
+              <div class="form-group d-block mr-1">
+                <label class="justify-content-start small" for="username"
+                  >Username</label
+                >
+                <input type="text" id="username" class="form-control" />
+              </div>
+              <div class="form-group d-block mx-1">
+                <label class="justify-content-start small" for="status"
+                  >Status</label
+                >
+                <select class="form-control" id="status">
+                  <option selected="selected">---Any---</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group d-block mx-1">
+                <label class="justify-content-start small" for="roles"
+                  >Roles</label
+                >
+                <select class="form-control" id="roles">
+                  <option selected="selected">---Any---</option>
+                  <option *ngFor="let role of roles; let i = index">
+                    {{ role.name | removeUnderscore | titlecase }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group d-block mx-1">
+                <label class="justify-content-start small" for="permission"
+                  >Permission</label
+                >
+                <select class="form-control" id="permission">
+                  <option selected="selected">---Any---</option>
+                  <option *ngFor="let permission of permissions; let i = index">
+                    {{ permission.name | removeUnderscore | titlecase }}
+                  </option>
+                </select>
+              </div>
+            </form>
+            <div class="mb-2">
+              <button class="btn btn-primary mr-2 rounded-pill">
+                <i class="fa fa-check"></i>
+                Apply
+              </button>
+              <button class="btn btn-light rounded-pill border-dark">
+                <i class="fa fa-close"></i>
+                Clear
+              </button>
             </div>
-            <div class="form-group d-block mx-1">
-              <label class="justify-content-start small" for="status"
-                >Status</label
-              >
-              <select class="form-control" id="status">
-                <option selected="selected">---Any---</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group d-block mx-1">
-              <label class="justify-content-start small" for="roles"
-                >Roles</label
-              >
-              <select class="form-control" id="roles">
-                <option selected="selected">---Any---</option>
-                <option *ngFor = "let role of roles; let i = index"
-                > {{ role.name | removeUnderscore | titlecase}}
-                </option>
-              </select>
-            </div>
-            <div class="form-group d-block mx-1">
-              <label class="justify-content-start small" for="permission"
-                >Permission</label
-              >
-              <select class="form-control" id="permission">
-                <option selected="selected">---Any---</option>
-                <option *ngFor = "let permission of permissions; let i = index"
-                > {{ permission.name | removeUnderscore | titlecase}}
-                </option>
-              </select>
-            </div>
-          </form>
-          <div class="mb-2">
-            <button class="btn btn-primary mr-2 rounded-pill">
-              <i class="fa fa-check"></i>
-              Apply
-            </button>
-            <button class="btn btn-light rounded-pill border-dark">
-              <i class="fa fa-close"></i>
-              Clear
-            </button>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>
+                    <span class="label label-success">{{
+                      user.status == 1 ? "Active" : "Inactive"
+                    }}</span>
+                  </td>
+                  <td>
+                    <app-user-details [user]="user" [id]="i"></app-user-details>
+                    <app-user-edit [user]="user" [id]="i"></app-user-edit>
+                    <app-user-delete [user]="user" [id]="i"></app-user-delete>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users; let i = index">
-                <td>{{ user.name }}</td>
-                <td>{{ user.username }}</td>
-                <td><span class="label label-success">{{ user.status == 1 ? "Active" : "Inactive" }}</span></td>
-                <td>
-                  <app-user-details [user]='user' [id]='i'></app-user-details>
-                  <app-user-edit [user]='user' [id]='i'></app-user-edit>
-                  <app-user-delete [user]='user' [id]='i'></app-user-delete>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
         </div>
 
         <!-- Permission -->
@@ -145,53 +151,7 @@
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <button class="btn btn-primary mb-2">
-            <i class="fa fa-plus"></i>
-            Add Permission
-          </button>
-
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Permission</th>
-                <th *ngFor="let role of roles" class="text-center">
-                  {{ role.name | removeUnderscore | titlecase}}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let permission of permissions">
-                <td>{{ permission.name | removeUnderscore | titlecase }}</td>
-                <td class="text-center">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="defaultCheck1"
-                  />
-                </td>
-                <td class="text-center">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="defaultCheck1"
-                  />
-                </td>
-                <td class="text-center">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="defaultCheck1"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="btn btn-primary">
-            Save Permissions
-          </button>
+        <app-permissions></app-permissions>
         </div>
 
         <!-- Roles -->
@@ -201,35 +161,7 @@
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          <button class="btn btn-primary mb-2">
-            <i class="fa fa-plus"></i>
-            Add Role
-          </button>
-
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Roles</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let role of roles">
-                <td>{{ role.name | removeUnderscore | titlecase}}</td>
-                <td>
-                  <button class="btn btn-primary mx-1">
-                    <i class="fa fa-eye"> </i>
-                  </button>
-                  <button class="btn btn-warning mx-1">
-                    <i class="fa fa-pencil text-white"> </i>
-                  </button>
-                  <button class="btn btn-danger mx-1">
-                    <i class="fa fa-trash"> </i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <app-roles></app-roles>
         </div>
       </div>
     </div>

@@ -20,6 +20,10 @@ var user_details_component_1 = require("src/app/modules/users/user-details/user-
 var user_edit_component_1 = require("src/app/modules/users/user-edit/user-edit.component");
 var user_delete_component_1 = require("src/app/modules/users/user-delete/user-delete.component");
 var user_add_component_1 = require("src/app/modules/users/user-add/user-add.component");
+var roles_component_1 = require("src/app/modules/roles/roles.component");
+var permissions_component_1 = require("src/app/modules/permissions/permissions.component");
+var role_add_component_1 = require("src/app/modules/roles/role-add/role-add.component");
+var permission_add_component_1 = require("src/app/modules/permissions/permission-add/permission-add.component");
 var DefaultModule = /** @class */ (function () {
     function DefaultModule() {
     }
@@ -33,7 +37,11 @@ var DefaultModule = /** @class */ (function () {
                 user_add_component_1.UserAddComponent,
                 user_edit_component_1.UserEditComponent,
                 user_delete_component_1.UserDeleteComponent,
-                users_component_1.RemoveUnderscorePipe
+                users_component_1.RemoveUnderscorePipe,
+                roles_component_1.RolesComponent,
+                role_add_component_1.RoleAddComponent,
+                permissions_component_1.PermissionsComponent,
+                permission_add_component_1.PermissionAddComponent
             ],
             imports: [common_1.CommonModule, router_1.RouterModule, shared_module_1.SharedModule, ng_bootstrap_1.NgbAlertModule, forms_1.FormsModule, forms_1.ReactiveFormsModule]
         })
