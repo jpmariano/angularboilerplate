@@ -126,7 +126,7 @@
               <tr *ngFor="let user of users; let i = index">
                 <td>{{ user.name }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.status == 1 ? "Active" : "Inactive" }}</td>
+                <td><span class="label label-success">{{ user.status == 1 ? "Active" : "Inactive" }}</span></td>
                 <td>
                   <app-user-details [user]='user' [id]='i'></app-user-details>
                   <app-user-edit [user]='user' [id]='i'></app-user-edit>

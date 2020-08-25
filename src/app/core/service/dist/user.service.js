@@ -41,6 +41,13 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getUsers = function () {
         return this.users.slice();
     };
+    UserService.prototype.addUser = function (name, username, password) {
+        return this.http.post(this.baseUrl + "/users/", {
+            "name": name,
+            "username": username,
+            "password": password
+        });
+    };
     UserService.prototype.updateUser = function (user, uid) {
         return this.http
             .put(this.baseUrl + "/users/" + uid, user, { responseType: 'text' })

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DefaultComponent } from './default.component';
 import { DashboardComponent } from '../../modules/dashboard/dashboard.component';
@@ -27,6 +27,6 @@ import { UserAddComponent } from 'src/app/modules/users/user-add/user-add.compon
     UserDeleteComponent,
     RemoveUnderscorePipe
   ],
-  imports: [CommonModule, RouterModule, SharedModule, NgbAlertModule, FormsModule],
+  imports: [CommonModule, RouterModule, SharedModule, NgbAlertModule, FormsModule, ReactiveFormsModule],
 })
 export class DefaultModule {}

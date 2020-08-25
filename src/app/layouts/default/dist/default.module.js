@@ -35,7 +35,7 @@ var DefaultModule = /** @class */ (function () {
                 user_delete_component_1.UserDeleteComponent,
                 users_component_1.RemoveUnderscorePipe
             ],
-            imports: [common_1.CommonModule, router_1.RouterModule, shared_module_1.SharedModule, ng_bootstrap_1.NgbAlertModule, forms_1.FormsModule]
+            imports: [common_1.CommonModule, router_1.RouterModule, shared_module_1.SharedModule, ng_bootstrap_1.NgbAlertModule, forms_1.FormsModule, forms_1.ReactiveFormsModule]
         })
     ], DefaultModule);
     return DefaultModule;

@@ -25,13 +25,19 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <i class="fa fa-user-circle text-white"></i>
+          <i class="fa fa-user-circle text-white"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="px-3 py-2">
-              <h5>{{ user.name }}</h5>
+              <p> {{user.name}} </p>
               <p>{{ user.username }}</p>
             </div>
+            <a class="text-reset">
+              <button class="btn btn-light btn-block rounded-0">View Profile</button>
+            </a>
+            <a class="text-reset">
+              <button class="btn btn-light btn-block rounded-0">Change Password</button>
+            </a>
           </div>
         </div>
       </li>

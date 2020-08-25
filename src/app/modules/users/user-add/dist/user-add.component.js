@@ -9,17 +9,32 @@ exports.__esModule = true;
 exports.UserAddComponent = void 0;
 var core_1 = require("@angular/core");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
+var forms_1 = require("@angular/forms");
 var UserAddComponent = /** @class */ (function () {
-    function UserAddComponent(modalService, userService) {
+    function UserAddComponent(modalService, userService, authService) {
         this.modalService = modalService;
         this.userService = userService;
+        this.authService = authService;
         this.closeResult = '';
     }
     UserAddComponent.prototype.ngOnInit = function () {
+        this.userAddForm = new forms_1.FormGroup({
+            userData: new forms_1.FormGroup({
+                firstName: new forms_1.FormControl(null, [forms_1.Validators.required]),
+                lastName: new forms_1.FormControl(null, [forms_1.Validators.required]),
+                username: new forms_1.FormControl(null, [
+                    forms_1.Validators.email,
+                    forms_1.Validators.required,
+                ]),
+                password: new forms_1.FormControl(null, [forms_1.Validators.required])
+            })
+        });
     };
     UserAddComponent.prototype.open = function (content) {
         var _this = this;
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(function (result) {
+        this.modalService
+            .open(content, { ariaLabelledBy: 'modal-basic-title' })
+            .result.then(function (result) {
             _this.closeResult = "Closed with: " + result;
         }, function (reason) {
             _this.closeResult = "Dismissed " + _this.getDismissReason(reason);
@@ -36,10 +51,26 @@ var UserAddComponent = /** @class */ (function () {
             return "with: " + reason;
         }
     };
-    UserAddComponent.prototype.onSubmit = function () { };
-    __decorate([
-        core_1.ViewChild('f')
-    ], UserAddComponent.prototype, "ngForm");
+    UserAddComponent.prototype.onSubmit = function () {
+        console.log(this.userAddForm);
+        // let name: string =
+        //   this.userAddForm.value['userData'].firstName +
+        //   ' ' +
+        //   this.userAddForm.value['userData'].lastName;
+        // this.authService.signUp(
+        //   name,
+        //   this.userAddForm.value['userData'].username,
+        //   this.userAddForm.value['userData'].password
+        // ).subscribe(
+        //   (resData) => {
+        //     console.log(resData['body']);
+        //     this.authService.userVerify(resData['body'].user['0'].vkey, resData['body'].key['0']);
+        //   },
+        //   (errorMessage) => {
+        //     console.log(errorMessage);
+        //   }
+        // );
+    };
     UserAddComponent = __decorate([
         core_1.Component({
             selector: 'app-user-add',

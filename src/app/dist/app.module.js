@@ -30,7 +30,6 @@ var AppModule = /** @class */ (function () {
                 default_module_1.DefaultModule,
                 fullwidth_module_1.FullWidthModule,
                 app_routing_module_1.AppRoutingModule,
-                forms_1.ReactiveFormsModule,
                 http_1.HttpClientModule,
                 ng_bootstrap_1.NgbModule,
                 forms_1.FormsModule,

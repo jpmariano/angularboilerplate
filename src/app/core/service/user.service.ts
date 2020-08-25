@@ -43,6 +43,14 @@ export class UserService {
     return this.users.slice();
   }
 
+  addUser(name: string, username: string, password: string){
+    return this.http.post(`${this.baseUrl}/users/`, {
+      "name": name,
+      "username": username,
+      "password": password
+    })
+  }
+
   updateUser(user: User, uid: number) {
     return this.http
       .put(`${this.baseUrl}/users/${uid}`, user, {  responseType: 'text' })

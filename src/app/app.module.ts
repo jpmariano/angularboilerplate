@@ -20,7 +20,6 @@ import { AuthInterceptor } from './auth/authentication-interceptor.service';
     DefaultModule,
     FullWidthModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     FormsModule,
