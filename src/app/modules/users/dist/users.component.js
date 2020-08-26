@@ -26,11 +26,10 @@ var UsersComponent = /** @class */ (function () {
     UsersComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.userService.getAllUsers();
-        this.usersSubs = this.userService.usersChanged.subscribe(function (users) {
-            return _this.users = users;
-        });
+        this.usersSubs = this.userService.usersChanged.subscribe(function (users) { return (_this.users = users); });
         this.users = this.userService.getUsers();
-        this.permissionService.getAllPermissions()
+        this.permissionService
+            .getAllPermissions()
             .pipe(operators_1.first())
             .subscribe(function (permissions) {
             _this.permissions = permissions;
@@ -38,7 +37,9 @@ var UsersComponent = /** @class */ (function () {
         });
         this.roleService.getAllRoles();
         this.rolesSubs = this.roleService.rolesChanged.subscribe(function (roles) {
-            return _this.roles = roles;
+            _this.roles = roles;
+            console.log(_this.roles);
+            console.log(_this.roles['0'].role_permissions);
         });
         this.roles = this.roleService.getRoles();
     };
@@ -46,7 +47,7 @@ var UsersComponent = /** @class */ (function () {
         this.usersSubs.unsubscribe();
     };
     UsersComponent.prototype.onName = function (id) {
-        return this.title = this.titles[id];
+        return (this.title = this.titles[id]);
     };
     UsersComponent = __decorate([
         core_1.Component({
@@ -62,7 +63,7 @@ var RemoveUnderscorePipe = /** @class */ (function () {
     function RemoveUnderscorePipe() {
     }
     RemoveUnderscorePipe.prototype.transform = function (value, args) {
-        return value.replace(/_/g, " ");
+        return value.replace(/_/g, ' ');
     };
     RemoveUnderscorePipe = __decorate([
         core_2.Pipe({ name: 'removeUnderscore' })

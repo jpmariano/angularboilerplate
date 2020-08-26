@@ -16,4 +16,8 @@ export class PermissionService {
     return this.http.get<Permission[]>(`${this.baseUrl}/admin/permissions/`);
   }
 
+  getPermission() {
+
+  }
+
 }

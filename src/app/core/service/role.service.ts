@@ -14,7 +14,7 @@ export class RoleService {
   roleSelected = new Subject<Role>();
   rolesChanged = new Subject<Role[]>();
 
-  private roles: Role[] = [];
+  private roles: Array<Role> = [];
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +24,7 @@ export class RoleService {
       .pipe(first())
       .subscribe((roles) => {
         this.roles = roles;
+        console.log(this.roles);
         this.rolesChanged.next(this.roles.slice());
       });
   }

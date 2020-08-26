@@ -15,7 +15,6 @@ var AuthInterceptor = /** @class */ (function () {
     AuthInterceptor.prototype.intercept = function (req, next) {
         var currentUser = this.authService.user;
         if (currentUser && this.authService.getToken() != null) {
-            console.log('Test interceptor');
             req = req.clone({
                 setHeaders: {
                     Authorization: "Bearer " + this.authService.getToken(),

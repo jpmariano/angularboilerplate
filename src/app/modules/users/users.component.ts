@@ -19,10 +19,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
 })
-
-export class UsersComponent implements OnInit, OnDestroy{
+export class UsersComponent implements OnInit, OnDestroy {
   currentUser: User;
   users: User[];
   permissions: Permission[];
@@ -33,49 +32,50 @@ export class UsersComponent implements OnInit, OnDestroy{
   usersSubs: Subscription;
   rolesSubs: Subscription;
 
-  constructor(private userService: UserService,
-              private permissionService: PermissionService,
-              private roleService: RoleService) { }
+  constructor(
+    private userService: UserService,
+    private permissionService: PermissionService,
+    private roleService: RoleService
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.userService.getAllUsers();
     this.usersSubs = this.userService.usersChanged.subscribe(
-      (users: User[]) =>
-        this.users = users
+      (users: User[]) => (this.users = users)
     );
     this.users = this.userService.getUsers();
 
-
-    this.permissionService.getAllPermissions()
-            .pipe(first())
-            .subscribe(permissions => {
-              this.permissions = permissions;
-              console.log(permissions);
-            });
+    this.permissionService
+      .getAllPermissions()
+      .pipe(first())
+      .subscribe((permissions) => {
+        this.permissions = permissions;
+        console.log(permissions);
+      });
 
     this.roleService.getAllRoles();
     this.rolesSubs = this.roleService.rolesChanged.subscribe(
-      (roles: Role[]) =>
-        this.roles = roles
+      (roles: Role[]) => {
+        this.roles = roles;
+        console.log(this.roles);
+        console.log(this.roles['0'].role_permissions);
+      }
     );
     this.roles = this.roleService.getRoles();
-
-
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.usersSubs.unsubscribe();
   }
 
-  onName(id: number){
-    return this.title = this.titles[id];
+  onName(id: number) {
+    return (this.title = this.titles[id]);
   }
-
 }
 
 @Pipe({ name: 'removeUnderscore' })
 export class RemoveUnderscorePipe implements PipeTransform {
   transform(value: any, args?: any): any {
-    return value.replace(/_/g, " ");
+    return value.replace(/_/g, ' ');
   }
 }

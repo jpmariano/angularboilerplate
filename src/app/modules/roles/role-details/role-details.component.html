@@ -13,6 +13,9 @@
   <div class="modal-body">
     <p><strong>Name:</strong> {{ role.name | removeUnderscore | titlecase }}</p>
     <p><strong>Weight:</strong> {{ role.weight }}</p>
+    <!-- <div *ngFor="let role_permission of role.role_permissions; let i = index">
+      <p> {{ role_permission[i.toString()]}} </p>
+    </div> -->
   </div>
   <div class="modal-footer">
     <button

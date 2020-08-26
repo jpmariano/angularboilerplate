@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Role } from 'src/app/core/model/role.model';
+import { PermissionService } from 'src/app/core/service/permission.service';
 
 @Component({
   selector: 'app-role-details',
@@ -14,9 +15,10 @@ export class RoleDetailsComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private permissionService: PermissionService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   open(content) {
     this.modalService
@@ -29,6 +31,7 @@ export class RoleDetailsComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+    console.log(this.role.role_permissions[this.id.toString()].role_permissionsid.pid);
   }
 
   private getDismissReason(reason: any): string {

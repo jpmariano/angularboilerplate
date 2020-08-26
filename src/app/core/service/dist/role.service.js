@@ -25,6 +25,7 @@ var RoleService = /** @class */ (function () {
             .pipe(operators_1.first())
             .subscribe(function (roles) {
             _this.roles = roles;
+            console.log(_this.roles);
             _this.rolesChanged.next(_this.roles.slice());
         });
     };

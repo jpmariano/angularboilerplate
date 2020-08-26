@@ -8,14 +8,15 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
-  styleUrls: ['./roles.component.css']
+  styleUrls: ['./roles.component.css'],
 })
 export class RolesComponent implements OnInit, OnDestroy {
-
   roles: Role[];
   rolesSubs: Subscription;
 
-  constructor(private roleService: RoleService) { }
+  constructor(private roleService: RoleService) {
+    console.log(this.roles);
+  }
 
   ngOnInit(): void {
     this.roleService.getAllRoles();
@@ -25,8 +26,7 @@ export class RolesComponent implements OnInit, OnDestroy {
     this.roles = this.roleService.getRoles();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.rolesSubs.unsubscribe();
   }
-
 }
