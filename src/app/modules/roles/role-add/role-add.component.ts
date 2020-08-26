@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { RoleService } from 'src/app/core/service/role.service';
+
 @Component({
   selector: 'app-role-add',
   templateUrl: './role-add.component.html',
@@ -12,7 +14,7 @@ export class RoleAddComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private roleService: RoleService) {}
 
   ngOnInit(){
     this.roleAddForm = new FormGroup({
@@ -39,7 +41,9 @@ export class RoleAddComponent implements OnInit {
     }
   }
 
-  onSubmit(){}
+  onSubmit(){
+    console.log(this.roleAddForm);
+  }
 
 
 }

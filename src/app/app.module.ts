@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/authentication-interceptor.service';
 import { PermissionAddComponent } from './modules/permissions/permission-add/permission-add.component';
 import { RoleAddComponent } from './modules/roles/role-add/role-add.component';
+import { RoleDetailsComponent } from './modules/roles/role-details/role-details.component';
+import { RoleEditComponent } from './modules/roles/role-edit/role-edit.component';
+import { RoleDeleteComponent } from './modules/roles/role-delete/role-delete.component';
 
 
 @NgModule({

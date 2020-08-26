@@ -1,24 +1,45 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <form (ngSubmit)="onSubmit()" [formGroup]="roleAddForm">
-      <div class="form-group">
-        <label for="roleName">Name</label>
-        <input type="text" name="roleName" id="roleName" class="form-control" formControlName="name">
+      <div class="form-group form-row">
+        <div class="col-6">
+          <label for="roleName">Name</label>
+          <input
+            type="text"
+            name="roleName"
+            id="roleName"
+            class="form-control"
+            formControlName="name"
+          />
+        </div>
+        <div class="col-6">
+          <label for="roleWeight">Weight</label>
+          <input
+            type="text"
+            name="roleWeight"
+            id="roleWeight"
+            class="form-control"
+            formControlName="weight"
+          />
+        </div>
       </div>
-      <div class="form-group">
-        <label for="roleWeight">Weight</label>
-        <input type="text" name="roleWeight" id="roleWeight" class="form-control" formControlName="weight">
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">
+          <a (click)="modal.close('Save click')">Add Role</a>
+        </button>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
   </div>
 </ng-template>
 
@@ -26,4 +47,3 @@
   <i class="fa fa-plus"></i>
   Add Role
 </button>
-<hr>

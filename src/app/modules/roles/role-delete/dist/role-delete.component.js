@@ -6,31 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.RoleAddComponent = void 0;
+exports.RoleDeleteComponent = void 0;
 var core_1 = require("@angular/core");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
-var forms_1 = require("@angular/forms");
-var RoleAddComponent = /** @class */ (function () {
-    function RoleAddComponent(modalService, roleService) {
+var RoleDeleteComponent = /** @class */ (function () {
+    function RoleDeleteComponent(modalService, roleService) {
         this.modalService = modalService;
         this.roleService = roleService;
         this.closeResult = '';
     }
-    RoleAddComponent.prototype.ngOnInit = function () {
-        this.roleAddForm = new forms_1.FormGroup({
-            name: new forms_1.FormControl(null, [forms_1.Validators.required]),
-            weight: new forms_1.FormControl(null, [forms_1.Validators.required])
-        });
-    };
-    RoleAddComponent.prototype.open = function (content) {
+    RoleDeleteComponent.prototype.ngOnInit = function () { };
+    RoleDeleteComponent.prototype.open = function (content) {
         var _this = this;
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(function (result) {
+        this.modalService
+            .open(content, { ariaLabelledBy: 'modal-basic-title' })
+            .result.then(function (result) {
             _this.closeResult = "Closed with: " + result;
         }, function (reason) {
             _this.closeResult = "Dismissed " + _this.getDismissReason(reason);
         });
     };
-    RoleAddComponent.prototype.getDismissReason = function (reason) {
+    RoleDeleteComponent.prototype.getDismissReason = function (reason) {
         if (reason === ng_bootstrap_1.ModalDismissReasons.ESC) {
             return 'by pressing ESC';
         }
@@ -41,16 +37,22 @@ var RoleAddComponent = /** @class */ (function () {
             return "with: " + reason;
         }
     };
-    RoleAddComponent.prototype.onSubmit = function () {
-        console.log(this.roleAddForm);
+    RoleDeleteComponent.prototype.deleteRole = function () {
+        this.roleService.deleteRole(this.id, this.role.rid);
     };
-    RoleAddComponent = __decorate([
+    __decorate([
+        core_1.Input()
+    ], RoleDeleteComponent.prototype, "role");
+    __decorate([
+        core_1.Input('i')
+    ], RoleDeleteComponent.prototype, "id");
+    RoleDeleteComponent = __decorate([
         core_1.Component({
-            selector: 'app-role-add',
-            templateUrl: './role-add.component.html',
-            styleUrls: ['./role-add.component.css']
+            selector: 'app-role-delete',
+            templateUrl: './role-delete.component.html',
+            styleUrls: ['./role-delete.component.css']
         })
-    ], RoleAddComponent);
-    return RoleAddComponent;
+    ], RoleDeleteComponent);
+    return RoleDeleteComponent;
 }());
-exports.RoleAddComponent = RoleAddComponent;
+exports.RoleDeleteComponent = RoleDeleteComponent;

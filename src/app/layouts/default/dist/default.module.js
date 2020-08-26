@@ -24,6 +24,9 @@ var roles_component_1 = require("src/app/modules/roles/roles.component");
 var permissions_component_1 = require("src/app/modules/permissions/permissions.component");
 var role_add_component_1 = require("src/app/modules/roles/role-add/role-add.component");
 var permission_add_component_1 = require("src/app/modules/permissions/permission-add/permission-add.component");
+var role_details_component_1 = require("src/app/modules/roles/role-details/role-details.component");
+var role_edit_component_1 = require("src/app/modules/roles/role-edit/role-edit.component");
+var role_delete_component_1 = require("src/app/modules/roles/role-delete/role-delete.component");
 var DefaultModule = /** @class */ (function () {
     function DefaultModule() {
     }
@@ -40,10 +43,20 @@ var DefaultModule = /** @class */ (function () {
                 users_component_1.RemoveUnderscorePipe,
                 roles_component_1.RolesComponent,
                 role_add_component_1.RoleAddComponent,
+                role_details_component_1.RoleDetailsComponent,
+                role_edit_component_1.RoleEditComponent,
+                role_delete_component_1.RoleDeleteComponent,
                 permissions_component_1.PermissionsComponent,
-                permission_add_component_1.PermissionAddComponent
+                permission_add_component_1.PermissionAddComponent,
             ],
-            imports: [common_1.CommonModule, router_1.RouterModule, shared_module_1.SharedModule, ng_bootstrap_1.NgbAlertModule, forms_1.FormsModule, forms_1.ReactiveFormsModule]
+            imports: [
+                common_1.CommonModule,
+                router_1.RouterModule,
+                shared_module_1.SharedModule,
+                ng_bootstrap_1.NgbAlertModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+            ]
         })
     ], DefaultModule);
     return DefaultModule;

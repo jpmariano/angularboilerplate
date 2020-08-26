@@ -13,7 +13,7 @@ var operators_1 = require("rxjs/operators");
 var RoleService = /** @class */ (function () {
     function RoleService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:8080/v1';
+        this.baseUrl = 'http://localhost:8080/v1/admin';
         this.roleSelected = new rxjs_1.Subject();
         this.rolesChanged = new rxjs_1.Subject();
         this.roles = [];
@@ -21,7 +21,7 @@ var RoleService = /** @class */ (function () {
     RoleService.prototype.getAllRoles = function () {
         var _this = this;
         return this.http
-            .get(this.baseUrl + "/admin/role")
+            .get(this.baseUrl + "/role")
             .pipe(operators_1.first())
             .subscribe(function (roles) {
             _this.roles = roles;
@@ -32,10 +32,24 @@ var RoleService = /** @class */ (function () {
         return this.roles.slice();
     };
     RoleService.prototype.addRole = function (name, weight) {
+        return this.http.post(this.baseUrl + "/role", {
+            name: name,
+            weigth: weight
+        });
+    };
+    RoleService.prototype.updateRole = function (role, rid) {
         return this.http
-            .post(this.baseUrl + "/admin/role", {
-            "name": name,
-            "weigth": weight
+            .put(this.baseUrl + "/role/" + rid, role, { responseType: 'text' })
+            .pipe(operators_1.map(function (response) { return console.log(response); }))
+            .subscribe();
+    };
+    RoleService.prototype.deleteRole = function (id, rid) {
+        this.roles.splice(id, 1);
+        this.rolesChanged.next(this.roles.slice());
+        return this.http["delete"](this.baseUrl + "/role/" + rid, {
+            responseType: 'text'
+        }).subscribe(function (response) {
+            console.log(response);
         });
     };
     RoleService = __decorate([

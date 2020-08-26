@@ -7,19 +7,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let role of roles">
+    <tr *ngFor="let role of roles; let i = index">
       <td>{{ role.name | removeUnderscore | titlecase}}</td>
       <td>
-
-        <button class="btn btn-primary mx-1">
-          <i class="fa fa-eye"> </i>
-        </button>
-        <button class="btn btn-warning mx-1">
-          <i class="fa fa-pencil text-white"> </i>
-        </button>
-        <button class="btn btn-danger mx-1">
-          <i class="fa fa-trash"> </i>
-        </button>
+        <app-role-details [role]="role" [i]="i" ></app-role-details>
+        <app-role-edit [role]="role" [i]="i"></app-role-edit>
+        <app-role-delete [role]="role" [i]="i"></app-role-delete>
       </td>
     </tr>
   </tbody>

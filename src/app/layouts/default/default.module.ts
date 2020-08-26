@@ -19,6 +19,9 @@ import { RolesComponent } from 'src/app/modules/roles/roles.component';
 import { PermissionsComponent } from 'src/app/modules/permissions/permissions.component';
 import { RoleAddComponent } from 'src/app/modules/roles/role-add/role-add.component';
 import { PermissionAddComponent } from 'src/app/modules/permissions/permission-add/permission-add.component';
+import { RoleDetailsComponent } from 'src/app/modules/roles/role-details/role-details.component';
+import { RoleEditComponent } from 'src/app/modules/roles/role-edit/role-edit.component';
+import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-delete.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +35,19 @@ import { PermissionAddComponent } from 'src/app/modules/permissions/permission-a
     RemoveUnderscorePipe,
     RolesComponent,
     RoleAddComponent,
+    RoleDetailsComponent,
+    RoleEditComponent,
+    RoleDeleteComponent,
     PermissionsComponent,
-    PermissionAddComponent
+    PermissionAddComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule, NgbAlertModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    NgbAlertModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class DefaultModule {}
