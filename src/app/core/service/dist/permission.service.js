@@ -32,6 +32,19 @@ var PermissionService = /** @class */ (function () {
     PermissionService.prototype.getPermissions = function () {
         return this.permissions.slice();
     };
+    PermissionService.prototype.getRoles = function (permission) {
+        return permission.role_permissions;
+    };
+    PermissionService.prototype.hasPermission = function (permission, role) {
+        var roles = this.getRoles(permission);
+        for (var _i = 0, roles_1 = roles; _i < roles_1.length; _i++) {
+            var role_per = roles_1[_i];
+            if (role_per['role_permissionsid'].rid == role.rid) {
+                return true;
+            }
+        }
+        return false;
+    };
     PermissionService.prototype.getPermissionName = function (pid) {
         return this.search(pid, this.permissions);
     };

@@ -40,6 +40,10 @@ export class PermissionsComponent implements OnInit, OnDestroy {
     this.roles = this.roleService.getRoles();
   }
 
+  hasPermission(permission: Permission, role: Role): boolean {
+    return this.permissionService.hasPermission(permission, role);
+  }
+
   ngOnDestroy(){
     this.rolesSubs.unsubscribe();
   }

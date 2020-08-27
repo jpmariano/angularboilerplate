@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Permission } from '../model/permission.model';
 import { first } from 'rxjs/operators';
+import { Role } from '../model/role.model';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,20 @@ export class PermissionService {
 
   getPermissions() {
     return this.permissions.slice();
+  }
+
+  getRoles(permission: Permission) {
+    return permission.role_permissions;
+  }
+
+  hasPermission(permission: Permission, role: Role): boolean {
+    let roles = this.getRoles(permission);
+    for(let role_per of roles){
+      if(role_per['role_permissionsid'].rid == role.rid){
+        return true;
+      }
+    }
+    return false;
   }
 
   getPermissionName(pid: number) {

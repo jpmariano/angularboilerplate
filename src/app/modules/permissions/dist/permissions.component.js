@@ -24,6 +24,9 @@ var PermissionsComponent = /** @class */ (function () {
         this.rolesSubs = this.roleService.rolesChanged.subscribe(function (roles) { return (_this.roles = roles); });
         this.roles = this.roleService.getRoles();
     };
+    PermissionsComponent.prototype.hasPermission = function (permission, role) {
+        return this.permissionService.hasPermission(permission, role);
+    };
     PermissionsComponent.prototype.ngOnDestroy = function () {
         this.rolesSubs.unsubscribe();
     };
