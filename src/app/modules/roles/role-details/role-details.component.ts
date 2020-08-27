@@ -3,6 +3,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Role } from 'src/app/core/model/role.model';
 import { PermissionService } from 'src/app/core/service/permission.service';
+import { RoleService } from 'src/app/core/service/role.service';
+import { RolePermission } from 'src/app/core/model/role-permission.model';
 
 @Component({
   selector: 'app-role-details',
@@ -13,11 +15,18 @@ export class RoleDetailsComponent implements OnInit {
   @Input() role: Role;
   @Input('i') id: number;
 
+  rolePermissions: RolePermission[];
+
   closeResult = '';
 
-  constructor(private modalService: NgbModal, private permissionService: PermissionService) {}
+  constructor(
+    private modalService: NgbModal,
+    private roleService: RoleService,
+    private permissionService: PermissionService
+  ) {}
 
   ngOnInit(): void {
+    this.rolePermissions = this.roleService.getPermissions(this.role);
   }
 
   open(content) {
@@ -31,7 +40,6 @@ export class RoleDetailsComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
-    console.log(this.role.role_permissions[this.id.toString()].role_permissionsid.pid);
   }
 
   private getDismissReason(reason: any): string {
@@ -42,5 +50,9 @@ export class RoleDetailsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  getPermissionName(pid: number){
+    return this.permissionService.getPermissionName(pid);
   }
 }

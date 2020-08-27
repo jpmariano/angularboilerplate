@@ -15,7 +15,7 @@ export class RolesComponent implements OnInit, OnDestroy {
   rolesSubs: Subscription;
 
   constructor(private roleService: RoleService) {
-    console.log(this.roles);
+    // console.log(this.roles);
   }
 
   ngOnInit(): void {

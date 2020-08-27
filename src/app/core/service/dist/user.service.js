@@ -34,7 +34,7 @@ var UserService = /** @class */ (function () {
             .pipe(operators_1.first())
             .subscribe(function (users) {
             _this.users = users;
-            console.log(users);
+            // console.log(users);
             _this.usersChanged.next(_this.users.slice());
         });
     };

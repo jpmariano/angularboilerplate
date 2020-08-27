@@ -24,13 +24,18 @@ export class RoleService {
       .pipe(first())
       .subscribe((roles) => {
         this.roles = roles;
-        console.log(this.roles);
+        // console.log(this.roles);
         this.rolesChanged.next(this.roles.slice());
       });
   }
 
   getRoles() {
     return this.roles.slice();
+  }
+
+  getPermissions(role: Role){
+    // console.log(role.role_permissions);
+    return role.role_permissions;
   }
 
   addRole(name: string, weight: number) {

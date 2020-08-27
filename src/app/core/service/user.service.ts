@@ -34,7 +34,7 @@ export class UserService {
       .pipe(first())
       .subscribe((users) => {
         this.users = users;
-        console.log(users);
+        // console.log(users);
         this.usersChanged.next(this.users.slice());
       });
   }

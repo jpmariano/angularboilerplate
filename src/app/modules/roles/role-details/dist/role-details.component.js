@@ -10,12 +10,14 @@ exports.RoleDetailsComponent = void 0;
 var core_1 = require("@angular/core");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var RoleDetailsComponent = /** @class */ (function () {
-    function RoleDetailsComponent(modalService, permissionService) {
+    function RoleDetailsComponent(modalService, roleService, permissionService) {
         this.modalService = modalService;
+        this.roleService = roleService;
         this.permissionService = permissionService;
         this.closeResult = '';
     }
     RoleDetailsComponent.prototype.ngOnInit = function () {
+        this.rolePermissions = this.roleService.getPermissions(this.role);
     };
     RoleDetailsComponent.prototype.open = function (content) {
         var _this = this;
@@ -26,7 +28,6 @@ var RoleDetailsComponent = /** @class */ (function () {
         }, function (reason) {
             _this.closeResult = "Dismissed " + _this.getDismissReason(reason);
         });
-        console.log(this.role.role_permissions[this.id.toString()].role_permissionsid.pid);
     };
     RoleDetailsComponent.prototype.getDismissReason = function (reason) {
         if (reason === ng_bootstrap_1.ModalDismissReasons.ESC) {
@@ -38,6 +39,9 @@ var RoleDetailsComponent = /** @class */ (function () {
         else {
             return "with: " + reason;
         }
+    };
+    RoleDetailsComponent.prototype.getPermissionName = function (pid) {
+        return this.permissionService.getPermissionName(pid);
     };
     __decorate([
         core_1.Input()

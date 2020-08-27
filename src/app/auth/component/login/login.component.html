@@ -6,10 +6,14 @@
       </div>
     </div>
     <div class="alert alert-danger" role="alert" *ngIf="!isLoading && error">
-      A simple danger alert—check it out!
+      An Error Occurs
     </div>
-    <div class="card mb-5 shadow border rounded-0" style="width: 35rem;">
-      <div class="card-body mx-5" *ngIf="!isLoading">
+    <div
+      class="card mb-5 shadow border rounded-0"
+      style="width: 35rem"
+      *ngIf="!isLoading"
+    >
+      <div class="card-body mx-5">
         <h4 class="text-center">Login</h4>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
           <div formGroupName="loginData">
@@ -20,7 +24,6 @@
                 formControlName="username"
                 class="form-control"
                 name="username"
-                formControlName="username"
                 placeholder="juandela.cruz@gmail.com"
               />
 
@@ -31,7 +34,6 @@
                 "
                 class="help-block"
               >
-
                 <span
                   class="small text-danger help-block"
                   *ngIf="loginForm.get('loginData.username').errors['required']"
@@ -46,7 +48,6 @@
                 formControlName="password"
                 class="form-control"
                 name="password"
-                formControlName="password"
               />
               <span
                 *ngIf="
@@ -68,9 +69,9 @@
                 class="form-check-input mt-1"
                 type="checkbox"
                 value=""
-                id="defaultCheck1"
+                id="defaultCheck"
               />
-              <label class="form-check-label" for="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck">
                 Remember Me
               </label>
             </div>

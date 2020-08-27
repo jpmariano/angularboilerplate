@@ -13,9 +13,17 @@
   <div class="modal-body">
     <p><strong>Name:</strong> {{ role.name | removeUnderscore | titlecase }}</p>
     <p><strong>Weight:</strong> {{ role.weight }}</p>
-    <!-- <div *ngFor="let role_permission of role.role_permissions; let i = index">
-      <p> {{ role_permission[i.toString()]}} </p>
-    </div> -->
+    <p><strong>Permissions List:</strong></p>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let permission of rolePermissions; let i = index">
+        {{
+          getPermissionName(permission["role_permissionsid"].pid)
+            | removeUnderscore
+            | titlecase
+        }}
+      </li>
+    </ul>
+    <p *ngIf="rolePermissions == null">No Permissions Assigned</p>
   </div>
   <div class="modal-footer">
     <button

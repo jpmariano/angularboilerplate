@@ -11,7 +11,7 @@ var core_1 = require("@angular/core");
 var RolesComponent = /** @class */ (function () {
     function RolesComponent(roleService) {
         this.roleService = roleService;
-        console.log(this.roles);
+        // console.log(this.roles);
     }
     RolesComponent.prototype.ngOnInit = function () {
         var _this = this;

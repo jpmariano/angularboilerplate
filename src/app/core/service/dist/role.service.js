@@ -25,12 +25,16 @@ var RoleService = /** @class */ (function () {
             .pipe(operators_1.first())
             .subscribe(function (roles) {
             _this.roles = roles;
-            console.log(_this.roles);
+            // console.log(this.roles);
             _this.rolesChanged.next(_this.roles.slice());
         });
     };
     RoleService.prototype.getRoles = function () {
         return this.roles.slice();
+    };
+    RoleService.prototype.getPermissions = function (role) {
+        // console.log(role.role_permissions);
+        return role.role_permissions;
     };
     RoleService.prototype.addRole = function (name, weight) {
         return this.http.post(this.baseUrl + "/role", {

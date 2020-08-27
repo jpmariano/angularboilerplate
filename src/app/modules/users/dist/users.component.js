@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.RemoveUnderscorePipe = exports.UsersComponent = void 0;
 var core_1 = require("@angular/core");
-var operators_1 = require("rxjs/operators");
 var core_2 = require("@angular/core");
 // interface Userz {
 //   name: string;
@@ -28,18 +27,16 @@ var UsersComponent = /** @class */ (function () {
         this.userService.getAllUsers();
         this.usersSubs = this.userService.usersChanged.subscribe(function (users) { return (_this.users = users); });
         this.users = this.userService.getUsers();
-        this.permissionService
-            .getAllPermissions()
-            .pipe(operators_1.first())
-            .subscribe(function (permissions) {
+        this.permissionService.getAllPermissions();
+        this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(function (permissions) {
             _this.permissions = permissions;
-            console.log(permissions);
         });
+        this.permissions = this.permissionService.getPermissions();
         this.roleService.getAllRoles();
         this.rolesSubs = this.roleService.rolesChanged.subscribe(function (roles) {
             _this.roles = roles;
-            console.log(_this.roles);
-            console.log(_this.roles['0'].role_permissions);
+            // console.log(this.roles);
+            // console.log(this.roles['0'].role_permissions);
         });
         this.roles = this.roleService.getRoles();
     };

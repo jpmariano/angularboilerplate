@@ -14,6 +14,8 @@ import { Subscription } from 'rxjs';
 export class PermissionsComponent implements OnInit, OnDestroy {
   permissions: Permission[];
   roles: Role[];
+
+  permissionsSubs: Subscription;
   rolesSubs: Subscription;
 
   constructor(
@@ -22,13 +24,14 @@ export class PermissionsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.permissionService
-      .getAllPermissions()
-      .pipe(first())
-      .subscribe((permissions) => {
+
+    this.permissionService.getAllPermissions();
+    this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(
+      (permissions: Permission[]) => {
         this.permissions = permissions;
-        console.log(permissions);
-      });
+      }
+    );
+    this.permissions = this.permissionService.getPermissions();
 
     this.roleService.getAllRoles();
     this.rolesSubs = this.roleService.rolesChanged.subscribe(

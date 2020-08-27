@@ -31,6 +31,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   usersSubs: Subscription;
   rolesSubs: Subscription;
+  permissionsSubs: Subscription;
 
   constructor(
     private userService: UserService,
@@ -45,20 +46,20 @@ export class UsersComponent implements OnInit, OnDestroy {
     );
     this.users = this.userService.getUsers();
 
-    this.permissionService
-      .getAllPermissions()
-      .pipe(first())
-      .subscribe((permissions) => {
+    this.permissionService.getAllPermissions();
+    this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(
+      (permissions: Permission[]) => {
         this.permissions = permissions;
-        console.log(permissions);
-      });
+      }
+    );
+    this.permissions = this.permissionService.getPermissions();
 
     this.roleService.getAllRoles();
     this.rolesSubs = this.roleService.rolesChanged.subscribe(
       (roles: Role[]) => {
         this.roles = roles;
-        console.log(this.roles);
-        console.log(this.roles['0'].role_permissions);
+        // console.log(this.roles);
+        // console.log(this.roles['0'].role_permissions);
       }
     );
     this.roles = this.roleService.getRoles();

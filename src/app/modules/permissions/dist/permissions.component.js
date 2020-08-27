@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.PermissionsComponent = void 0;
 var core_1 = require("@angular/core");
-var operators_1 = require("rxjs/operators");
 var PermissionsComponent = /** @class */ (function () {
     function PermissionsComponent(permissionService, roleService) {
         this.permissionService = permissionService;
@@ -16,13 +15,11 @@ var PermissionsComponent = /** @class */ (function () {
     }
     PermissionsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.permissionService
-            .getAllPermissions()
-            .pipe(operators_1.first())
-            .subscribe(function (permissions) {
+        this.permissionService.getAllPermissions();
+        this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(function (permissions) {
             _this.permissions = permissions;
-            console.log(permissions);
         });
+        this.permissions = this.permissionService.getPermissions();
         this.roleService.getAllRoles();
         this.rolesSubs = this.roleService.rolesChanged.subscribe(function (roles) { return (_this.roles = roles); });
         this.roles = this.roleService.getRoles();

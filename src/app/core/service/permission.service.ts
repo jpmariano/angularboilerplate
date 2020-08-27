@@ -1,23 +1,48 @@
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { Permission } from "../model/permission.model";
+import { Permission } from '../model/permission.model';
+import { first } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PermissionService {
-  private baseUrl:string = 'http://localhost:8080/v1';
+  private baseUrl: string = 'http://localhost:8080/v1/admin';
 
-  constructor(private http:HttpClient) { }
+  permissionSelected = new Subject<Permission>();
+  permissionsChanged = new Subject<Permission[]>();
 
-  getAllPermissions(): Observable<Permission[]> {
-    return this.http.get<Permission[]>(`${this.baseUrl}/admin/permissions/`);
+  private permissions: Permission[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  getAllPermissions() {
+    return this.http
+      .get<Permission[]>(`${this.baseUrl}/permissions/`)
+      .pipe(first())
+      .subscribe((permissions) => {
+        this.permissions = permissions;
+        console.log(permissions);
+        this.permissionsChanged.next(this.permissions.slice());
+      });
   }
 
-  getPermission() {
-
+  getPermissions() {
+    return this.permissions.slice();
   }
 
+  getPermissionName(pid: number) {
+    return this.search(pid, this.permissions);
+  }
+
+  search(pid: number, array: Permission[]): string {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].pid == pid) {
+        return array[i].name;
+      }
+    }
+    return '';
+  }
 }

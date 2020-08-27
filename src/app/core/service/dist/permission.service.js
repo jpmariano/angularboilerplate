@@ -7,16 +7,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.PermissionService = void 0;
+var rxjs_1 = require("rxjs");
 var core_1 = require("@angular/core");
+var operators_1 = require("rxjs/operators");
 var PermissionService = /** @class */ (function () {
     function PermissionService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:8080/v1';
+        this.baseUrl = 'http://localhost:8080/v1/admin';
+        this.permissionSelected = new rxjs_1.Subject();
+        this.permissionsChanged = new rxjs_1.Subject();
+        this.permissions = [];
     }
     PermissionService.prototype.getAllPermissions = function () {
-        return this.http.get(this.baseUrl + "/admin/permissions/");
+        var _this = this;
+        return this.http
+            .get(this.baseUrl + "/permissions/")
+            .pipe(operators_1.first())
+            .subscribe(function (permissions) {
+            _this.permissions = permissions;
+            console.log(permissions);
+            _this.permissionsChanged.next(_this.permissions.slice());
+        });
     };
-    PermissionService.prototype.getPermission = function () {
+    PermissionService.prototype.getPermissions = function () {
+        return this.permissions.slice();
+    };
+    PermissionService.prototype.getPermissionName = function (pid) {
+        return this.search(pid, this.permissions);
+    };
+    PermissionService.prototype.search = function (pid, array) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i].pid == pid) {
+                return array[i].name;
+            }
+        }
+        return '';
     };
     PermissionService = __decorate([
         core_1.Injectable({
