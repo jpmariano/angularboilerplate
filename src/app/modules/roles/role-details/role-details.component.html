@@ -15,9 +15,12 @@
     <p><strong>Weight:</strong> {{ role.weight }}</p>
     <p><strong>Permissions List:</strong></p>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let permission of rolePermissions; let i = index">
+      <li
+        class="list-group-item"
+        *ngFor="let permission of rolePermissions | keyvalue; let i = index"
+      >
         {{
-          getPermissionName(permission["role_permissionsid"].pid)
+          getPermissionName(permission.value["role_permissionsid"].pid)
             | removeUnderscore
             | titlecase
         }}

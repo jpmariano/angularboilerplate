@@ -8,12 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.PermissionsComponent = void 0;
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var PermissionsComponent = /** @class */ (function () {
     function PermissionsComponent(permissionService, roleService) {
         this.permissionService = permissionService;
         this.roleService = roleService;
+        this.formArray = new forms_1.FormArray([new forms_1.FormControl('test')]);
     }
     PermissionsComponent.prototype.ngOnInit = function () {
+        // this.rolePermissionForm = new FormGroup({
+        //   'rolePermissionArr': new FormArray([
+        //     new FormControl('John')
+        //   ]),
+        // });
         var _this = this;
         this.permissionService.getAllPermissions();
         this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(function (permissions) {
@@ -25,10 +32,19 @@ var PermissionsComponent = /** @class */ (function () {
         this.roles = this.roleService.getRoles();
     };
     PermissionsComponent.prototype.hasPermission = function (permission, role) {
+        // this.formArray.push(new FormControl(role.rid.toString()));
+        console.log('test');
         return this.permissionService.hasPermission(permission, role);
     };
     PermissionsComponent.prototype.ngOnDestroy = function () {
+        this.permissionsSubs.unsubscribe();
         this.rolesSubs.unsubscribe();
+    };
+    PermissionsComponent.prototype.onSubmit = function () {
+        console.log(this.rolePermissionForm);
+    };
+    PermissionsComponent.prototype.getControls = function () {
+        console.log(this.formArray.controls);
     };
     PermissionsComponent = __decorate([
         core_1.Component({

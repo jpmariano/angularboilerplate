@@ -39,13 +39,14 @@ export class PermissionService {
   }
 
   hasPermission(permission: Permission, role: Role): boolean {
-    let roles = this.getRoles(permission);
-    for(let role_per of roles){
+    let bool: boolean = false;
+    for(let role_per of this.getRoles(permission)){
       if(role_per['role_permissionsid'].rid == role.rid){
-        return true;
+        bool = true;
+        break;
       }
     }
-    return false;
+    return bool;
   }
 
   getPermissionName(pid: number) {
