@@ -8,6 +8,7 @@ import { LoginComponent } from '../auth/component/login/login.component';
 import { RegisterComponent } from '../auth/component/register/register.component';
 
 import { AuthGuard } from '../auth/authentication.guard';
+import { LoggedInAuthGuard } from '../auth/loggedin-auth.guard';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: FullWidthComponent,
+    canActivate: [LoggedInAuthGuard],
     children: [{
       path: 'login',
       component: LoginComponent

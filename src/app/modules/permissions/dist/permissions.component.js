@@ -33,7 +33,7 @@ var PermissionsComponent = /** @class */ (function () {
     };
     PermissionsComponent.prototype.hasPermission = function (permission, role) {
         // this.formArray.push(new FormControl(role.rid.toString()));
-        console.log('test');
+        // console.log('test');
         return this.permissionService.hasPermission(permission, role);
     };
     PermissionsComponent.prototype.ngOnDestroy = function () {

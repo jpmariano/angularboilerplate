@@ -19,8 +19,8 @@ var UsersComponent = /** @class */ (function () {
         this.userService = userService;
         this.permissionService = permissionService;
         this.roleService = roleService;
-        this.title = 'Users';
         this.titles = ['Users', 'Permissions', 'Roles'];
+        this.title = this.titles[0];
     }
     UsersComponent.prototype.ngOnInit = function () {
         var _this = this;

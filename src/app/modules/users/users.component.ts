@@ -26,8 +26,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   users: User[];
   permissions: Permission[];
   roles: Role[];
-  title = 'Users';
+
   titles = ['Users', 'Permissions', 'Roles'];
+  title = this.titles[0];
 
   usersSubs: Subscription;
   rolesSubs: Subscription;

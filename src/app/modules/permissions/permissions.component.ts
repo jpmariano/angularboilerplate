@@ -52,7 +52,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
 
   hasPermission(permission: Permission, role: Role): boolean {
     // this.formArray.push(new FormControl(role.rid.toString()));
-    console.log('test');
+    // console.log('test');
     return this.permissionService.hasPermission(permission, role);
   }
 
