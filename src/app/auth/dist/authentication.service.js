@@ -71,7 +71,28 @@ var AuthenticationService = /** @class */ (function () {
         this.auth = false;
     };
     AuthenticationService.prototype.handleError = function (errorRes) {
-        return rxjs_1.throwError('An unknown error occurs');
+        var errorMessage;
+        switch (errorRes.status) {
+            case 500:
+                errorMessage =
+                    'An Internal Server Error Occurs. Please try again later.';
+                break;
+            case 404:
+                errorMessage = 'Incorrect Username or Password.';
+                break;
+            case 401:
+                errorMessage = 'You are unauthenticated to login.';
+                break;
+            case 403:
+                errorMessage = 'You does not have access rights to the content.';
+                break;
+            default:
+                errorMessage = 'An unknown error occurs.';
+        }
+        if (!errorRes.error || !errorRes.error.error) {
+            return rxjs_1.throwError(errorMessage);
+        }
+        return rxjs_1.throwError(errorMessage);
     };
     AuthenticationService.prototype.autoLogin = function () {
         var userData = JSON.parse(localStorage.getItem('userData'));
