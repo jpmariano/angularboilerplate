@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, PipeTransform } from '@angular/core';
 import { User } from 'src/app/core/model/user.model';
 import { Permission } from 'src/app/core/model/permission.model';
 import { Role } from 'src/app/core/model/role.model';
@@ -16,6 +16,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
   users: User[];
   permissions: Permission[];
   roles: Role[];
+
+  userKeyword: string;
+
+  statuses: number[] = [1, 2, 3];
 
   usersSubs: Subscription;
   rolesSubs: Subscription;
@@ -57,3 +61,4 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.usersSubs.unsubscribe();
   }
 }
+

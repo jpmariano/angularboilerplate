@@ -1,28 +1,20 @@
-<form class="form-inline mb-2">
+<div class="form-inline mb-2">
   <div class="form-group d-block mr-1">
-    <label class="justify-content-start small" for="username"
-      >Username</label
-    >
-    <input type="text" id="username" class="form-control" />
+    <label class="justify-content-start small" for="username">Username</label>
+    <input type="text" id="username" class="form-control" [(ngModel)]="userKeyword" />
   </div>
   <div class="form-group d-block mx-1">
-    <label class="justify-content-start small" for="status"
-      >Status</label
-    >
+    <label class="justify-content-start small" for="status">Status</label>
     <select class="form-control" id="status">
       <option selected="selected">---Any---</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
     </select>
   </div>
   <div class="form-group d-block mx-1">
-    <label class="justify-content-start small" for="roles"
-      >Roles</label
-    >
+    <label class="justify-content-start small" for="roles">Roles</label>
     <select class="form-control" id="roles">
       <option selected="selected">---Any---</option>
-      <option *ngFor="let role of roles; let i = index">
+      <option *ngFor="let role of roles; let i = index" [value]="role.name">
         {{ role.name | removeUnderscore | titlecase }}
       </option>
     </select>
@@ -33,12 +25,12 @@
     >
     <select class="form-control" id="permission">
       <option selected="selected">---Any---</option>
-      <option *ngFor="let permission of permissions; let i = index">
+      <option *ngFor="let permission of permissions; let i = index" [value]="permission.name">
         {{ permission.name | removeUnderscore | titlecase }}
       </option>
     </select>
   </div>
-</form>
+</div>
 <div class="mb-2">
   <button class="btn btn-primary mr-2 rounded-pill">
     <i class="fa fa-check"></i>
@@ -59,7 +51,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users; let i = index">
+    <tr *ngFor="let user of users | filter:userKeyword; index as i">
       <td>{{ user.name }}</td>
       <td>{{ user.username }}</td>
       <td>

@@ -21,6 +21,7 @@ import { RoleEditComponent } from 'src/app/modules/roles/role-edit/role-edit.com
 import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-delete.component';
 import { RemoveUnderscorePipe } from '../../shared/remove-underscore.pipe';
 import { UsersListComponent } from 'src/app/modules/users/users-list/users-list.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UsersListComponent } from 'src/app/modules/users/users-list/users-list.
     NgbAlertModule,
     FormsModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
 })
 export class DefaultModule {}
