@@ -1,26 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
-import { User } from '../../core/model/user.model';
-import { Permission } from '../../core/model/permission.model';
-import { UserService } from '../../core/service/user.service';
-import { PermissionService } from '../../core/service/permission.service';
-import { RoleService } from '../../core/service/role.service';
+import { User } from 'src/app/core/model/user.model';
+import { Permission } from 'src/app/core/model/permission.model';
 import { Role } from 'src/app/core/model/role.model';
 import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/core/service/user.service';
+import { PermissionService } from 'src/app/core/service/permission.service';
+import { RoleService } from 'src/app/core/service/role.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.css'],
 })
-export class UsersComponent implements OnInit, OnDestroy {
-  currentUser: User;
+export class UsersListComponent implements OnInit, OnDestroy {
   users: User[];
   permissions: Permission[];
   roles: Role[];
-
-  titles = ['Users', 'Permissions', 'Roles'];
-  title = this.titles[0];
 
   usersSubs: Subscription;
   rolesSubs: Subscription;
@@ -54,16 +49,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       }
     );
     this.roles = this.roleService.getRoles();
-
-
   }
 
   ngOnDestroy() {
+    this.permissionsSubs.unsubscribe();
+    this.rolesSubs.unsubscribe();
     this.usersSubs.unsubscribe();
   }
-
-  onName(id: number) {
-    return (this.title = this.titles[id]);
-  }
 }
-

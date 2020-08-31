@@ -7,10 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DefaultComponent } from './default.component';
 import { DashboardComponent } from '../../modules/dashboard/dashboard.component';
-import {
-  UsersComponent,
-  RemoveUnderscorePipe,
-} from '../../modules/users/users.component';
+import { UsersComponent } from '../../modules/users/users.component';
 import { UserDetailsComponent } from 'src/app/modules/users/user-details/user-details.component';
 import { UserEditComponent } from 'src/app/modules/users/user-edit/user-edit.component';
 import { UserDeleteComponent } from 'src/app/modules/users/user-delete/user-delete.component';
@@ -22,6 +19,8 @@ import { PermissionAddComponent } from 'src/app/modules/permissions/permission-a
 import { RoleDetailsComponent } from 'src/app/modules/roles/role-details/role-details.component';
 import { RoleEditComponent } from 'src/app/modules/roles/role-edit/role-edit.component';
 import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-delete.component';
+import { RemoveUnderscorePipe } from '../../shared/remove-underscore.pipe';
+import { UsersListComponent } from 'src/app/modules/users/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +31,7 @@ import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-dele
     UserAddComponent,
     UserEditComponent,
     UserDeleteComponent,
+    UsersListComponent,
     RemoveUnderscorePipe,
     RolesComponent,
     RoleAddComponent,

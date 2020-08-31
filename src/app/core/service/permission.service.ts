@@ -25,7 +25,7 @@ export class PermissionService {
       .pipe(first())
       .subscribe((permissions) => {
         this.permissions = permissions;
-        console.log(permissions);
+        // console.log(permissions);
         this.permissionsChanged.next(this.permissions.slice());
       });
   }

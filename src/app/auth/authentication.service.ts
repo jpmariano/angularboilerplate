@@ -95,11 +95,7 @@ export class AuthenticationService {
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage: string;
     switch (errorRes.status) {
-      case 500:
-        errorMessage =
-          'An Internal Server Error Occurs. Please try again later.';
-        break;
-      case 404:
+      case (404 || 500):
         errorMessage = 'Incorrect Username or Password.';
         break;
       case 401:

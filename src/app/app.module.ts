@@ -15,10 +15,11 @@ import { RoleAddComponent } from './modules/roles/role-add/role-add.component';
 import { RoleDetailsComponent } from './modules/roles/role-details/role-details.component';
 import { RoleEditComponent } from './modules/roles/role-edit/role-edit.component';
 import { RoleDeleteComponent } from './modules/roles/role-delete/role-delete.component';
+import { UsersListComponent } from './modules/users/users-list/users-list.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

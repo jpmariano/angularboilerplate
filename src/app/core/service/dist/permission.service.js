@@ -25,7 +25,7 @@ var PermissionService = /** @class */ (function () {
             .pipe(operators_1.first())
             .subscribe(function (permissions) {
             _this.permissions = permissions;
-            console.log(permissions);
+            // console.log(permissions);
             _this.permissionsChanged.next(_this.permissions.slice());
         });
     };
