@@ -1,4 +1,3 @@
 export class RolePermission {
-  pid: number;
-  rid: number;
+  rolepermissionsid: {pid: number, rid: number}
 }

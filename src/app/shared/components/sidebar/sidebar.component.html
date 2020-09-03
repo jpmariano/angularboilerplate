@@ -31,7 +31,16 @@
       [ngClass]="onToggle ? 'sidebar-secondary' : 'sidebar-primary'"
     >
       <i class="fa fa-users"></i>
-      <span [ngClass]="onToggle ? 'd-none' : ''"> Users </span>
+      <span [ngClass]="onToggle ? 'd-none' : ''"> People </span>
+    </a>
+    <a
+      [routerLink]="['/admin/profile']"
+      routerLinkActive="active"
+      class="border-top list-group-item list-group-item-action border-right"
+      [ngClass]="onToggle ? 'sidebar-secondary' : 'sidebar-primary'"
+    >
+      <i class="fa fa-user"></i>
+      <span [ngClass]="onToggle ? 'd-none' : ''"> Profile </span>
     </a>
   </div>
 </div>

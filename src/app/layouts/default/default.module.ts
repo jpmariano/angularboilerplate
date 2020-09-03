@@ -22,6 +22,8 @@ import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-dele
 import { RemoveUnderscorePipe } from '../../shared/remove-underscore.pipe';
 import { UsersListComponent } from 'src/app/modules/users/users-list/users-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NgbAlertModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    DragDropModule
   ],
 })
 export class DefaultModule {}

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, PipeTransform } from '@angular/core';
+
 import { User } from 'src/app/core/model/user.model';
 import { Permission } from 'src/app/core/model/permission.model';
 import { Role } from 'src/app/core/model/role.model';
@@ -6,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/core/service/user.service';
 import { PermissionService } from 'src/app/core/service/permission.service';
 import { RoleService } from 'src/app/core/service/role.service';
+
+
 
 @Component({
   selector: 'app-users-list',
@@ -18,6 +21,9 @@ export class UsersListComponent implements OnInit, OnDestroy {
   roles: Role[];
 
   userKeyword: string;
+
+  totalUsers: number;
+  page: number = 1;
 
   statuses: number[] = [1, 2, 3];
 
@@ -37,6 +43,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
       (users: User[]) => (this.users = users)
     );
     this.users = this.userService.getUsers();
+    this.totalUsers = this.users.length;
 
     this.permissionService.getAllPermissions();
     this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(
@@ -55,10 +62,12 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.roles = this.roleService.getRoles();
   }
 
+
   ngOnDestroy() {
     this.permissionsSubs.unsubscribe();
     this.rolesSubs.unsubscribe();
     this.usersSubs.unsubscribe();
   }
+
 }
 

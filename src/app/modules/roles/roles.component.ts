@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { moveItemInArray, CdkDragDrop } from "@angular/cdk/drag-drop";
+import { Subscription } from 'rxjs';
 
 import { RoleService } from 'src/app/core/service/role.service';
 import { Role } from 'src/app/core/model/role.model';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-roles',
@@ -28,5 +30,12 @@ export class RolesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.rolesSubs.unsubscribe();
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.roles, event.previousIndex, event.currentIndex);
+    this.roles.forEach((user, idx) => {
+      // user.order = idx + 1;
+    });
   }
 }

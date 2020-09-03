@@ -1,13 +1,20 @@
 <div class="form-inline mb-2">
   <div class="form-group d-block mr-1">
     <label class="justify-content-start small" for="username">Username</label>
-    <input type="text" id="username" class="form-control" [(ngModel)]="userKeyword" />
+    <input
+      type="text"
+      id="username"
+      class="form-control"
+      [(ngModel)]="userKeyword"
+    />
   </div>
   <div class="form-group d-block mx-1">
     <label class="justify-content-start small" for="status">Status</label>
     <select class="form-control" id="status">
       <option selected="selected">---Any---</option>
-      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+      <option *ngFor="let status of statuses" [value]="status">
+        {{ status }}
+      </option>
     </select>
   </div>
   <div class="form-group d-block mx-1">
@@ -25,7 +32,10 @@
     >
     <select class="form-control" id="permission">
       <option selected="selected">---Any---</option>
-      <option *ngFor="let permission of permissions; let i = index" [value]="permission.name">
+      <option
+        *ngFor="let permission of permissions; let i = index"
+        [value]="permission.name"
+      >
         {{ permission.name | removeUnderscore | titlecase }}
       </option>
     </select>
@@ -51,13 +61,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users | filter:userKeyword; index as i">
+    <tr
+      *ngFor="
+        let user of users
+          | filter: userKeyword
+          | paginate
+            : {
+                id: 'listing_pagination',
+                itemsPerPage: 5,
+                currentPage: page,
+                totalItems: totalUsers
+              };
+        index as i
+      "
+    >
       <td>{{ user.name }}</td>
       <td>{{ user.username }}</td>
       <td>
-        <span class="label label-success">{{
-          user.status == 1 ? "Active" : "Inactive"
-        }}</span>
+        <p class="badge badge-success" *ngIf="user.verrified == 1">Active</p>
+        <p class="badge badge-warning" *ngIf="user.verrified != 1">Inactive</p>
       </td>
       <td>
         <app-user-details [user]="user" [id]="i"></app-user-details>
@@ -67,3 +89,11 @@
     </tr>
   </tbody>
 </table>
+<div class="d-flex flex-row-reverse">
+  <pagination-controls
+    id="listing_pagination"
+    maxSize="5"
+    directionLinks="true"
+    (pageChange)="page = $event"
+  ></pagination-controls>
+</div>

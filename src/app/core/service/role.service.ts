@@ -34,6 +34,7 @@ export class RoleService {
   }
 
   getPermissions(role: Role){
+
     // console.log(role.role_permissions);
     return role.role_permissions;
   }

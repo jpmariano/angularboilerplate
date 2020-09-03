@@ -9,6 +9,7 @@ import { RegisterComponent } from '../auth/component/register/register.component
 
 import { AuthGuard } from '../auth/authentication.guard';
 import { LoggedInAuthGuard } from '../auth/loggedin-auth.guard';
+import { ProfileComponent } from '../modules/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent
+      },{
+        path: 'profile',
+        component: ProfileComponent
       }
     ]
   },
