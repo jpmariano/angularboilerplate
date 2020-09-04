@@ -35,7 +35,7 @@
               </p>
             </div>
             <hr>
-            <a class="text-reset">
+            <a class="text-reset" [routerLink]="['/admin/profile']" >
               <button class="btn btn-light btn-block rounded-0">
                 Your Profile
               </button>
@@ -63,11 +63,12 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          [routerLink]="['/admin/login']"
         >
           Login
         </a>
         <!-- This will be added as a component -->
-        <ul
+        <!-- <ul
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="dropdownMenuLink"
         >
@@ -105,7 +106,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">New around here? Sign up</a>
           <a class="dropdown-item" href="#">Forgot password?</a>
-        </ul>
+        </ul> -->
         <!-- Until this section -->
       </li>
       <li class="dropdown show" *ngIf="!isAuthenticated">
@@ -117,11 +118,12 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          [routerLink]="['/admin/register']"
         >
           Sign Up
         </a>
         <!-- This will be added as a component -->
-        <ul
+        <!-- <ul
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="dropdownMenuLink"
         >
@@ -159,7 +161,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">New around here? Sign up</a>
           <a class="dropdown-item" href="#">Forgot password?</a>
-        </ul>
+        </ul> -->
         <!-- Until this section -->
       </li>
     </ul>

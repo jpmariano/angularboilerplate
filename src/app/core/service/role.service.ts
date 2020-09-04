@@ -46,6 +46,13 @@ export class RoleService {
     });
   }
 
+  updateWeight(role: Role, weight: number){
+    return this.http
+      .put(`${this.baseUrl}/role/${role.rid}`, { weight : weight} , { responseType: 'text' })
+      .pipe(map((response) => console.log(response)))
+      .subscribe();
+  }
+
   updateRole(role: Role, rid: number) {
     return this.http
       .put(`${this.baseUrl}/role/${rid}`, role, { responseType: 'text' })

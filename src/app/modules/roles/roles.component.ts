@@ -28,14 +28,14 @@ export class RolesComponent implements OnInit, OnDestroy {
     this.roles = this.roleService.getRoles();
   }
 
-  ngOnDestroy() {
-    this.rolesSubs.unsubscribe();
-  }
-
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.roles, event.previousIndex, event.currentIndex);
-    this.roles.forEach((user, idx) => {
-      // user.order = idx + 1;
+    this.roles.forEach((role, idx) => {
+      console.log(role + ' : ' + idx);
+      this.roleService.updateWeight(role, idx + 1);
     });
+  }
+  ngOnDestroy() {
+    this.rolesSubs.unsubscribe();
   }
 }
