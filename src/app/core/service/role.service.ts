@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { first, map } from 'rxjs/operators';
 
 import { Role } from '../model/role.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,18 +25,36 @@ export class RoleService {
       .pipe(first())
       .subscribe((roles) => {
         this.roles = roles;
-        // console.log(this.roles);
+        this.roles.sort((a, b) => (a.weight > b.weight ? 1 : -1));
         this.rolesChanged.next(this.roles.slice());
       });
+  }
+
+  getUserRoles(uid: number) : Array<number> {
+    let userRoles = [];
+    for(let role of this.roles){
+      for(let user_role of role.users_roles){
+        if(+user_role.users_rolesid.uid === +uid){
+          userRoles.push(user_role.users_rolesid.rid);
+        }
+      }
+    }
+    return userRoles;
   }
 
   getRoles() {
     return this.roles.slice();
   }
 
-  getPermissions(role: Role){
+  // getUserRoles(role: Role) {
+  //   let object = [];
+  //   role.users_roles.forEach((users_roles) => {
+  //     object.push(users_roles.users_rolesid.uid);
+  //   });
+  //   return object;
+  // }
 
-    // console.log(role.role_permissions);
+  getPermissions(role: Role) {
     return role.role_permissions;
   }
 
@@ -46,9 +65,13 @@ export class RoleService {
     });
   }
 
-  updateWeight(role: Role, weight: number){
+  updateWeight(role: Role, weight: number) {
     return this.http
-      .put(`${this.baseUrl}/role/${role.rid}`, { weight : weight} , { responseType: 'text' })
+      .put(
+        `${this.baseUrl}/role/${role.rid}`,
+        { weight: weight },
+        { responseType: 'text' }
+      )
       .pipe(map((response) => console.log(response)))
       .subscribe();
   }
@@ -63,10 +86,12 @@ export class RoleService {
   deleteRole(id: number, rid: number) {
     this.roles.splice(id, 1);
     this.rolesChanged.next(this.roles.slice());
-    return this.http.delete(`${this.baseUrl}/role/${rid}`, {
-      responseType: 'text',
-    }).subscribe((response)=> {
-      console.log(response);
-    });
+    return this.http
+      .delete(`${this.baseUrl}/role/${rid}`, {
+        responseType: 'text',
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }

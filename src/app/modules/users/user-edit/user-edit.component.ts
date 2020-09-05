@@ -1,29 +1,47 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 
 import { User } from 'src/app/core/model/user.model';
 import { UserService } from 'src/app/core/service/user.service';
+import { RoleService } from 'src/app/core/service/role.service';
+import { Role } from 'src/app/core/model/role.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css'],
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, OnDestroy {
   @ViewChild('f') editForm: NgForm;
 
   @Input() user: User;
   @Input() id: number;
 
+  roles: Role[];
+  userRoles: number[];
+  role = 2;
+
   closeResult = '';
+  rolesSubs: Subscription;
 
   constructor(
     private modalService: NgbModal,
-    private userService: UserService
+    private roleService: RoleService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.roleService.getAllRoles();
+    this.rolesSubs = this.roleService.rolesChanged.subscribe(
+      (roles: Role[]) => {
+        this.roles = roles;
+      }
+    );
+    this.roles = this.roleService.getRoles();
+    this.userRoles = this.roleService.getUserRoles(this.user.uid);
+    console.log(this.userRoles);
+  }
 
   open(content) {
     this.modalService
@@ -54,9 +72,23 @@ export class UserEditComponent implements OnInit {
     }
   }
 
+  hasRole(roles: number[], rid: number): boolean{
+    roles.forEach( (value) => {
+      if(+value === +rid) {
+        return true;
+      }
+    })
+    return false;
+  }
+
   onSubmit(f: NgForm) {
     this.user.name = f.value['userData'].name;
     this.user.username = f.value['userData'].username;
-    this.userService.updateUser(this.user, this.user.uid);
+    console.log(f);
+    // this.userService.updateUser(this.user, this.user.uid);
+  }
+
+  ngOnDestroy(){
+    this.rolesSubs.unsubscribe();
   }
 }

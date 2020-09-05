@@ -1,27 +1,29 @@
 <app-role-add></app-role-add>
-<table class="table table-striped w-75 table-width">
-  <thead>
-    <tr>
-      <th scope="col">Roles</th>
-      <th scope="col" class="text-center">Action</th>
-    </tr>
-  </thead>
-  <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
-    <tr *ngFor="let role of roles; let i = index" cdkDrag cdkDragLockAxis="y">
-      <td>
-        <div class="drag-handle">
-          <ng-container [ngTemplateOutlet]="dragHandleTmpl"> </ng-container>
-          {{ role.name | removeUnderscore | titlecase }}
-        </div>
-      </td>
-      <td class="text-center">
-        <app-role-details [role]="role" [i]="i"></app-role-details>
-        <app-role-edit [role]="role" [i]="i"></app-role-edit>
-        <app-role-delete [role]="role" [i]="i"></app-role-delete>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="overflow-x:auto;">
+  <table class="table table-striped table-width">
+    <thead>
+      <tr>
+        <th scope="col">Roles</th>
+        <th scope="col" class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
+      <tr *ngFor="let role of roles; let i = index" cdkDrag cdkDragLockAxis="y">
+        <td class="col-md">
+          <div class="drag-handle">
+            <ng-container [ngTemplateOutlet]="dragHandleTmpl"> </ng-container>
+            {{ role.name | removeUnderscore | titlecase }}
+          </div>
+        </td>
+        <td class="col-md text-center">
+          <app-role-details [role]="role" [i]="i"></app-role-details>
+          <app-role-edit [role]="role" [i]="i"></app-role-edit>
+          <app-role-delete [role]="role" [i]="i"></app-role-delete>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <ng-template #dragHandleTmpl>
   <svg

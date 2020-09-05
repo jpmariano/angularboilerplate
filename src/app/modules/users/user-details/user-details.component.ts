@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { User } from 'src/app/core/model/user.model';
+import { User, UserRoles } from 'src/app/core/model/user.model';
+import { UserService } from 'src/app/core/service/user.service';
+import { RoleService } from 'src/app/core/service/role.service';
 
 @Component({
   selector: 'app-user-details',
@@ -14,7 +16,9 @@ export class UserDetailsComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+  ) {}
 
   ngOnInit(): void {}
 

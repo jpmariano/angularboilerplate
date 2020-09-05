@@ -133,7 +133,7 @@ export class AuthenticationService {
       userData.login,
       userData.mid,
       userData.manageUsers,
-      userData.user_roles,
+      userData.users_roles,
       userData.user_meta
     );
 
@@ -156,7 +156,7 @@ export class AuthenticationService {
       userData.login,
       userData.mid,
       userData.manageUsers,
-      userData.user_roles,
+      userData.users_roles,
       userData.user_meta
     );
     this.user.next(user);

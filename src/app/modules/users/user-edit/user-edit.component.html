@@ -20,7 +20,7 @@
             class="form-control"
             name="name"
             value="user.name"
-            ngModel="{{user.name}}"
+            ngModel="{{ user.name }}"
             required
           />
         </div>
@@ -31,18 +31,44 @@
             class="form-control"
             name="username"
             value="user.username"
-            ngModel="{{user.username}}"
+            ngModel="{{ user.username }}"
             required
             email
             #email="ngModel"
           />
         </div>
       </div>
+      <div class="form-group">
+        <!-- <div class="form-check" *ngFor="let role of roles">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="users_roles"
+            [id]="role.rid"
+            [value]="role.rid"
+            checked
+            [(ngModel)]="userRole"
+          /> <label [for]="role.rid">{{ role.name | removeUnderscore | titlecase }}</label>
+        </div> -->
+        <div class="form-check" *ngFor="let role of roles; let i = index">
+          <label class="form-check-label">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name="userRoles"
+              [id]="role.rid"
+              value="2"
+              ngModel="{{ hasRole(userRoles, role.rid) }}"
+            />
+            {{ role.name | removeUnderscore | titlecase }}
+          </label>
+        </div>
+      </div>
       <div class="modal-footer">
         <button
           type="submit"
           class="btn btn-outline-warning"
-          [disabled]='f.invalid'
+          [disabled]="f.invalid"
         >
           Update
         </button>

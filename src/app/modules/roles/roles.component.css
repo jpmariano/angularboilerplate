@@ -24,13 +24,18 @@
 }
 
 .col-xs {
-  width: 2%;
-}
-
-.col-sm {
   width: 10%;
 }
 
-.col-md {
+.col-sm {
   width: 20%;
+}
+
+.col-md {
+  width: 40%;
+}
+
+
+.table-width {
+  width: 600px;
 }

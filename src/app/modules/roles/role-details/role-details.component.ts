@@ -27,6 +27,7 @@ export class RoleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.rolePermissions = this.roleService.getPermissions(this.role);
+    // this.roleService.getUserRoles(this.role);
   }
 
   open(content) {
@@ -52,7 +53,7 @@ export class RoleDetailsComponent implements OnInit {
     }
   }
 
-  getPermissionName(pid: number){
+  getPermissionName(pid: number) {
     return this.permissionService.getPermissionName(pid);
   }
 }

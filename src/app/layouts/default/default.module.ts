@@ -20,6 +20,7 @@ import { RoleDetailsComponent } from 'src/app/modules/roles/role-details/role-de
 import { RoleEditComponent } from 'src/app/modules/roles/role-edit/role-edit.component';
 import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-delete.component';
 import { RemoveUnderscorePipe } from '../../shared/remove-underscore.pipe';
+import { SortByPipe } from '../../shared/sortby.pipe';
 import { UsersListComponent } from 'src/app/modules/users/users-list/users-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -43,6 +44,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     RoleDeleteComponent,
     PermissionsComponent,
     PermissionAddComponent,
+    SortByPipe
   ],
   imports: [
     CommonModule,

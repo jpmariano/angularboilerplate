@@ -31,7 +31,6 @@ export class RolesComponent implements OnInit, OnDestroy {
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.roles, event.previousIndex, event.currentIndex);
     this.roles.forEach((role, idx) => {
-      console.log(role + ' : ' + idx);
       this.roleService.updateWeight(role, idx + 1);
     });
   }

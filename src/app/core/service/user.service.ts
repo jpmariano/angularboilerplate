@@ -4,7 +4,7 @@ import { Subject, throwError } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import { User } from '../model/user.model';
+import { User, UserRoles } from '../model/user.model';
 import { first, map, catchError } from 'rxjs/operators';
 
 const httpOptions = {
@@ -29,7 +29,7 @@ export class UserService {
   getAllUsers() {
     return this.http
       .get<User[]>(`${this.baseUrl}/users`, {
-        params: new HttpParams().set('pageNo', '0').set('pageSize', '20'),
+        params: new HttpParams().set('pageNo', '0').set('pageSize', '1000'),
       })
       .pipe(first())
       .subscribe((users) => {
@@ -42,6 +42,7 @@ export class UserService {
   getUsers() {
     return this.users.slice();
   }
+
 
   addUser(name: string, username: string, password: string) {
     return this.http.post(`${this.baseUrl}/users/`, {

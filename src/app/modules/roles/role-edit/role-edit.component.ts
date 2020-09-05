@@ -21,7 +21,7 @@ export class RoleEditComponent implements OnInit {
   constructor(private modalService: NgbModal, private roleService: RoleService) {}
 
   ngOnInit(): void {
-    console.log(this.roleService.getPermissions(this.role));
+    // console.log(this.roleService.getPermissions(this.role));
   }
 
   open(content) {
