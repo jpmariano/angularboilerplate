@@ -29,12 +29,6 @@ export class PermissionsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // this.rolePermissionForm = new FormGroup({
-    //   'rolePermissionArr': new FormArray([
-    //     new FormControl('John')
-    //   ]),
-    // });
-
     this.permissionService.getAllPermissions();
     this.permissionsSubs = this.permissionService.permissionsChanged.subscribe(
       (permissions: Permission[]) => {
@@ -51,10 +45,19 @@ export class PermissionsComponent implements OnInit, OnDestroy {
   }
 
   hasPermission(permission: Permission, role: Role): boolean {
-    // this.formArray.push(new FormControl(role.rid.toString()));
-    // console.log('test');
     return this.permissionService.hasPermission(permission, role);
   }
+
+
+  onChange(event: any, index: number, permission: Permission, role: Role) {
+    // item.checked = !item.checked;
+    console.log(this.hasPermission(permission, role));
+    if(this.hasPermission(permission, role)) {
+      this.roleService.deleteRolePermission(role.rid, permission.pid);
+    } else {
+      this.roleService.addRolePermission(role.rid, permission.pid);
+    }
+}
 
   ngOnDestroy() {
     this.permissionsSubs.unsubscribe();

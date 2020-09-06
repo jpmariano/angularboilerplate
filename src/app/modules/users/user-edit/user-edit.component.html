@@ -46,7 +46,7 @@
               [id]="role.rid"
               [value]="this.checks[i]"
               [checked]="this.checks[i]"
-              (change)="onChange($event, i ,role.rid)"
+              (change)="onChange($event, i, role.rid)"
             />
             {{ role.name | removeUnderscore | titlecase }}
           </label>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { first, map } from 'rxjs/operators';
@@ -30,11 +30,11 @@ export class RoleService {
       });
   }
 
-  getUserRoles(uid: number) : Array<number> {
+  getUserRoles(uid: number): Array<number> {
     let userRoles = [];
-    for(let role of this.roles){
-      for(let user_role of role.users_roles){
-        if(+user_role.users_rolesid.uid === +uid){
+    for (let role of this.roles) {
+      for (let user_role of role.users_roles) {
+        if (+user_role.users_rolesid.uid === +uid) {
           userRoles.push(user_role.users_rolesid.rid);
         }
       }
@@ -45,14 +45,6 @@ export class RoleService {
   getRoles() {
     return this.roles.slice();
   }
-
-  // getUserRoles(role: Role) {
-  //   let object = [];
-  //   role.users_roles.forEach((users_roles) => {
-  //     object.push(users_roles.users_rolesid.uid);
-  //   });
-  //   return object;
-  // }
 
   getPermissions(role: Role) {
     return role.role_permissions;
@@ -93,5 +85,50 @@ export class RoleService {
       .subscribe((response) => {
         console.log(response);
       });
+  }
+
+  deleteRolePermission(rid: number, pid: number) {
+    return this.http
+      .put(
+        `${this.baseUrl}/role/${rid}`,
+        {
+          role_permissions: [
+            {
+              role_permissionsid: {
+                pid: pid,
+                rid: rid,
+              },
+            },
+          ],
+        },
+        {
+          params: new HttpParams().set('rolepermission', 'remove'),
+          responseType: 'text',
+        }
+      )
+      .pipe(map((response) => console.log(response)))
+      .subscribe();
+  }
+
+  addRolePermission(rid: number, pid: number) {
+    return this.http
+      .put(
+        `${this.baseUrl}/role/${rid}`,
+        {
+          role_permissions: [
+            {
+              role_permissionsid: {
+                pid: pid,
+                rid: rid,
+              },
+            },
+          ],
+        },
+        {
+          responseType: 'text',
+        }
+      )
+      .pipe(map((response) => console.log(response)))
+      .subscribe();
   }
 }

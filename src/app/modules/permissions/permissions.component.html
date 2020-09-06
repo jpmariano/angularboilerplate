@@ -24,6 +24,7 @@
               [attr.id]="'checkbox' + i + j"
               [ngModel]="hasPermission(permission, role)"
               [ngModelOptions]="{ standalone: true }"
+              (change)="onChange($event, i, permission, role)"
             />
           </td>
         </tr>

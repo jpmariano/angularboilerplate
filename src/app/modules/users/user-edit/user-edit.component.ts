@@ -72,11 +72,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
       );
     this.roleLength = Object.keys(this.roles).length;
     this.userRoles = this.roleService.getUserRoles(this.user.uid);
-    console.log(this.userRoles + ' - - ' + this.roleLength);
     this.assignChecked(this.userRoles, this.roleLength);
-    console.log(this.userRoles);
-    console.log(this.checks);
-    console.log(this.userRoles.includes(2));
   }
 
   onChange(event, index, rid) {
@@ -128,11 +124,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // this.user.name = f.value['userData'].name;
-    // this.user.username = f.value['userData'].username;
-    // console.log(f);
-    console.log(this.editForm);
-    // this.userService.updateUser(this.user, this.user.uid);
+    this.user.name = this.editForm.get('userData.name').value;
+    this.user.username = this.editForm.get('userData.username').value;
+    this.userService.updateUser(this.user, this.user.uid);
   }
 
   ngOnDestroy() {
