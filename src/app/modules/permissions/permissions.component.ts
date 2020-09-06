@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { Permission } from 'src/app/core/model/permission.model';
 import { PermissionService } from 'src/app/core/service/permission.service';
@@ -20,8 +21,6 @@ export class PermissionsComponent implements OnInit, OnDestroy {
 
   permissionsSubs: Subscription;
   rolesSubs: Subscription;
-
-  formArray = new FormArray([new FormControl('test')]);
 
   constructor(
     private permissionService: PermissionService,
@@ -48,16 +47,14 @@ export class PermissionsComponent implements OnInit, OnDestroy {
     return this.permissionService.hasPermission(permission, role);
   }
 
-
   onChange(event: any, index: number, permission: Permission, role: Role) {
-    // item.checked = !item.checked;
     console.log(this.hasPermission(permission, role));
-    if(this.hasPermission(permission, role)) {
+    if (this.hasPermission(permission, role)) {
       this.roleService.deleteRolePermission(role.rid, permission.pid);
     } else {
       this.roleService.addRolePermission(role.rid, permission.pid);
     }
-}
+  }
 
   ngOnDestroy() {
     this.permissionsSubs.unsubscribe();
@@ -68,7 +65,10 @@ export class PermissionsComponent implements OnInit, OnDestroy {
     console.log(this.rolePermissionForm);
   }
 
-  getControls() {
-    console.log(this.formArray.controls);
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.permissions, event.previousIndex, event.currentIndex);
+    this.permissions.forEach((permission, idx) => {
+      this.permissionService.updateWeight(permission, idx + 1);
+    });
   }
 }

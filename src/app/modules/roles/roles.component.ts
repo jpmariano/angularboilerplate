@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { first } from 'rxjs/operators';
 import { moveItemInArray, CdkDragDrop } from "@angular/cdk/drag-drop";
 import { Subscription } from 'rxjs';
 
@@ -17,7 +16,6 @@ export class RolesComponent implements OnInit, OnDestroy {
   rolesSubs: Subscription;
 
   constructor(private roleService: RoleService) {
-    // console.log(this.roles);
   }
 
   ngOnInit(): void {
