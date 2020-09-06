@@ -11,8 +11,8 @@
     </button>
   </div>
   <div class="modal-body">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+    <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+      <div id="user-data" formGroupName="userData">
         <div class="form-group">
           <label for="name">Name</label>
           <input
@@ -20,7 +20,7 @@
             class="form-control"
             name="name"
             value="user.name"
-            ngModel="{{ user.name }}"
+            formControlName="name"
             required
           />
         </div>
@@ -31,25 +31,12 @@
             class="form-control"
             name="username"
             value="user.username"
-            ngModel="{{ user.username }}"
             required
-            email
-            #email="ngModel"
+            formControlName="username"
           />
         </div>
       </div>
       <div class="form-group">
-        <!-- <div class="form-check" *ngFor="let role of roles">
-          <input
-            type="radio"
-            class="form-check-input"
-            name="users_roles"
-            [id]="role.rid"
-            [value]="role.rid"
-            checked
-            [(ngModel)]="userRole"
-          /> <label [for]="role.rid">{{ role.name | removeUnderscore | titlecase }}</label>
-        </div> -->
         <div class="form-check" *ngFor="let role of roles; let i = index">
           <label class="form-check-label">
             <input
@@ -57,21 +44,16 @@
               class="form-check-input"
               name="userRoles"
               [id]="role.rid"
-              value="2"
-              ngModel="{{ hasRole(userRoles, role.rid) }}"
+              [value]="this.checks[i]"
+              [checked]="this.checks[i]"
+              (change)="onChange($event, i ,role.rid)"
             />
             {{ role.name | removeUnderscore | titlecase }}
           </label>
         </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="submit"
-          class="btn btn-outline-warning"
-          [disabled]="f.invalid"
-        >
-          Update
-        </button>
+        <button type="submit" class="btn btn-outline-warning">Update</button>
       </div>
     </form>
   </div>

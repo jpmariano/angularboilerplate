@@ -43,7 +43,6 @@ export class UserService {
     return this.users.slice();
   }
 
-
   addUser(name: string, username: string, password: string) {
     return this.http.post(`${this.baseUrl}/users/`, {
       name: name,
@@ -74,5 +73,64 @@ export class UserService {
       .subscribe((response) => {
         console.log(response);
       });
+  }
+
+  deleteUserRole(uid: number, rid: number) {
+    return this.http
+      .put(
+        `${this.baseUrl}/users/${uid}`,
+        {
+          'users_roles': [
+            {
+              'users_rolesid': {
+                'uid': uid,
+                'rid': rid,
+              },
+            },
+          ],
+        },
+        {
+          params: new HttpParams().set('userrole', 'remove'),
+          responseType: 'text',
+        }
+      )
+      .pipe(
+        map(
+          (response) => console.log(response),
+          catchError((errorRes) => {
+            return throwError(errorRes);
+          })
+        )
+      )
+      .subscribe();
+  }
+
+  addUserRole(uid: number, rid: number){
+    return this.http
+    .put(
+      `${this.baseUrl}/users/${uid}`,
+      {
+        'users_roles': [
+          {
+            'users_rolesid': {
+              'uid': uid,
+              'rid': rid,
+            },
+          },
+        ],
+      },
+      {
+        responseType: 'text',
+      }
+    )
+    .pipe(
+      map(
+        (response) => console.log(response),
+        catchError((errorRes) => {
+          return throwError(errorRes);
+        })
+      )
+    )
+    .subscribe();
   }
 }

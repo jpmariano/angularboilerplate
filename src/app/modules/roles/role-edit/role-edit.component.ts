@@ -49,7 +49,6 @@ export class RoleEditComponent implements OnInit {
 
   onSubmit(f: NgForm){
     this.role.name = f.value.name;
-    this.role.weight = f.value.weight;
     this.roleService.updateRole(this.role, this.role.rid);
   }
 }

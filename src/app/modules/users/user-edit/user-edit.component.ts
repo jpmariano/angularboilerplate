@@ -1,6 +1,12 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
+import {
+  NgForm,
+  FormGroup,
+  FormControl,
+  Validators,
+  FormArray,
+} from '@angular/forms';
 
 import { User } from 'src/app/core/model/user.model';
 import { UserService } from 'src/app/core/service/user.service';
@@ -14,13 +20,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./user-edit.component.css'],
 })
 export class UserEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f') editForm: NgForm;
-
   @Input() user: User;
   @Input() id: number;
 
+  editForm: FormGroup;
+
   roles: Role[];
   userRoles: number[];
+  checks: boolean[] = [];
+  roleLength: number;
   role = 2;
 
   closeResult = '';
@@ -28,7 +36,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private modalService: NgbModal,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -39,8 +48,15 @@ export class UserEditComponent implements OnInit, OnDestroy {
       }
     );
     this.roles = this.roleService.getRoles();
-    this.userRoles = this.roleService.getUserRoles(this.user.uid);
-    console.log(this.userRoles);
+    this.editForm = new FormGroup({
+      userData: new FormGroup({
+        name: new FormControl(this.user.name, [Validators.required]),
+        username: new FormControl(this.user.username, [
+          Validators.required,
+          Validators.email,
+        ]),
+      }),
+    });
   }
 
   open(content) {
@@ -54,6 +70,36 @@ export class UserEditComponent implements OnInit, OnDestroy {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+    this.roleLength = Object.keys(this.roles).length;
+    this.userRoles = this.roleService.getUserRoles(this.user.uid);
+    console.log(this.userRoles + ' - - ' + this.roleLength);
+    this.assignChecked(this.userRoles, this.roleLength);
+    console.log(this.userRoles);
+    console.log(this.checks);
+    console.log(this.userRoles.includes(2));
+  }
+
+  onChange(event, index, rid) {
+    this.checks[index] = !this.checks[index];
+    if (this.checks[index]) {
+      this.userService.addUserRole(this.user.uid, rid);
+    } else {
+      this.userService.deleteUserRole(this.user.uid, rid);
+    }
+  }
+
+  assignChecked(userRoles: number[], roleLength: number) {
+    if (userRoles === []) {
+      this.checks = [];
+    } else {
+      for (let i = 0; i < roleLength; i++) {
+        if (userRoles.includes(i + 1)) {
+          this.checks.push(true);
+        } else {
+          this.checks.push(false);
+        }
+      }
+    }
   }
 
   toDateTime(secs) {
@@ -72,23 +118,24 @@ export class UserEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  hasRole(roles: number[], rid: number): boolean{
-    roles.forEach( (value) => {
-      if(+value === +rid) {
+  hasRole(rid: number): boolean {
+    this.userRoles.forEach((value) => {
+      if (+value === +rid) {
         return true;
       }
-    })
+    });
     return false;
   }
 
-  onSubmit(f: NgForm) {
-    this.user.name = f.value['userData'].name;
-    this.user.username = f.value['userData'].username;
-    console.log(f);
+  onSubmit() {
+    // this.user.name = f.value['userData'].name;
+    // this.user.username = f.value['userData'].username;
+    // console.log(f);
+    console.log(this.editForm);
     // this.userService.updateUser(this.user, this.user.uid);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.rolesSubs.unsubscribe();
   }
 }
