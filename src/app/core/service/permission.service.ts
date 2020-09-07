@@ -25,7 +25,6 @@ export class PermissionService {
       .pipe(first())
       .subscribe((permissions) => {
         this.permissions = permissions;
-        // console.log(permissions);
         this.permissionsChanged.next(this.permissions.slice());
       });
   }
@@ -36,6 +35,23 @@ export class PermissionService {
 
   getRoles(permission: Permission) {
     return permission.role_permissions;
+  }
+
+  addPermission(name: string){
+    let weight = Math.max.apply(
+      Math,
+      this.permissions.map(function (o) {
+        return o.weight;
+      })
+    ) + 1;
+    return this.http
+      .post<Permission>(`${this.baseUrl}/permissions`, {
+        name: name,
+        weight: weight
+      }).subscribe((newPermission) => {
+        this.permissions.push(newPermission);
+        this.permissionsChanged.next(this.permissions.slice());
+      })
   }
 
   hasPermission(permission: Permission, role: Role): boolean {

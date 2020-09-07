@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PermissionService } from 'src/app/core/service/permission.service';
 
 @Component({
   selector: 'app-permission-add',
@@ -12,7 +13,10 @@ export class PermissionAddComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private permissionService: PermissionService
+  ) {}
 
   ngOnInit(): void {
     this.permissionAddForm = new FormGroup({
@@ -45,5 +49,6 @@ export class PermissionAddComponent implements OnInit {
 
   onSubmit() {
     console.log(this.permissionAddForm);
+    this.permissionService.addPermission(this.permissionAddForm.get('name').value);
   }
 }

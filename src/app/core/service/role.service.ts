@@ -58,7 +58,6 @@ export class RoleService {
           return o.weight;
         })
       ) + 1;
-    console.log(weight);
     return this.http
       .post<Role>(`${this.baseUrl}/role`, {
         name: name,
