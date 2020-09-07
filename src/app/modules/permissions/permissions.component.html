@@ -1,7 +1,4 @@
-<button class="btn btn-primary mb-2">
-  <i class="fa fa-plus"></i>
-  Add Permission
-</button>
+<app-permission-add></app-permission-add>
 <form (ngSubmit)="onSubmit()">
   <table class="table table-striped">
     <thead>
@@ -18,13 +15,13 @@
         cdkDrag
         cdkDragLockAxis="y"
       >
-        <td>
+        <td class="col-md">
           <div class="drag-handle">
             <ng-container [ngTemplateOutlet]="dragHandleTmpl"> </ng-container>
             {{ permission.name | removeUnderscore | titlecase }}
           </div>
         </td>
-        <td class="text-center" *ngFor="let role of roles; let j = index">
+        <td class="text-center col-xs" *ngFor="let role of roles; let j = index">
           <input type="hidden" name="permission" ngModel />
           <input
             class="form-check-input"

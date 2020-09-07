@@ -26,7 +26,7 @@ export class RoleDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.rolePermissions = this.roleService.getPermissions(this.role);
+    // this.rolePermissions = this.roleService.getPermissions(this.role);
     // this.roleService.getUserRoles(this.role);
   }
 
@@ -41,6 +41,7 @@ export class RoleDetailsComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+    this.rolePermissions = this.roleService.getPermissions(this.role);
   }
 
   private getDismissReason(reason: any): string {

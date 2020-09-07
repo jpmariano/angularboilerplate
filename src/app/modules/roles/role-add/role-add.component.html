@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Add Role</h4>
     <button
       type="button"
       class="close"
@@ -13,30 +13,29 @@
   <div class="modal-body">
     <form (ngSubmit)="onSubmit()" [formGroup]="roleAddForm">
       <div class="form-group form-row">
-        <div class="col-6">
-          <label for="roleName">Name</label>
-          <input
-            type="text"
-            name="roleName"
-            id="roleName"
-            class="form-control"
-            formControlName="name"
-          />
-        </div>
-        <div class="col-6">
-          <label for="roleWeight">Weight</label>
-          <input
-            type="text"
-            name="roleWeight"
-            id="roleWeight"
-            class="form-control"
-            formControlName="weight"
-          />
-        </div>
+        <label for="roleName">Name</label>
+        <input
+          type="text"
+          name="roleName"
+          id="roleName"
+          class="form-control"
+          formControlName="name"
+        />
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-dark">
-          <a (click)="modal.close('Save click')">Add Role</a>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Close click')"
+        >
+          Close
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!roleAddForm.get('name').valid"
+        >
+          <a class="text-white">Add</a>
         </button>
       </div>
     </form>

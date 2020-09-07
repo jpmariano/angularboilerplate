@@ -18,8 +18,7 @@ export class RoleAddComponent implements OnInit {
 
   ngOnInit(){
     this.roleAddForm = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      weight: new FormControl(null, [Validators.required])
+      name: new FormControl(null, [Validators.required])
     })
   }
 
@@ -43,6 +42,7 @@ export class RoleAddComponent implements OnInit {
 
   onSubmit(){
     console.log(this.roleAddForm);
+    this.roleService.addRole(this.roleAddForm.get('name').value);
   }
 
 

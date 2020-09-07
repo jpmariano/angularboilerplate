@@ -1,7 +1,7 @@
 import { RolePermission } from './role-permission.model';
 
 export class Role {
-  public rid: number;
+  public rid?: number;
   public name: string;
   public weight: number;
   public users_roles: UserRoles[];

@@ -29,7 +29,22 @@ export class User {
     manageUsers: string[],
     users_roles: UserRoles[],
     user_meta: string[]
-  ) {}
+  ) {
+    this.uid = uid;
+    this.name = name;
+    this.username = username;
+    this.status = status;
+    this.verrified = verrified;
+    this.vkey = vkey;
+    this.created = created;
+    this.changed = changed;
+    this.access = access;
+    this.login = login;
+    this.mid = mid;
+    this.manageUsers = manageUsers;
+    this.users_roles = users_roles;
+    this.user_meta = user_meta;
+  }
 }
 
 export class UserRoles {

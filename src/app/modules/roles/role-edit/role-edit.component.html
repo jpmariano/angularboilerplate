@@ -14,13 +14,20 @@
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" ngModel="{{role.name}}" required>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          ngModel="{{ role.name }}"
+          required
+        />
       </div>
       <div class="modal-footer">
         <button
           type="submit"
-          class="btn btn-outline-dark"
-          [disabled]='f.invalid'
+          class="btn btn-warning text-white"
+          [disabled]="f.invalid"
+          (click)="modal.close('Save click')"
         >
           Save
         </button>

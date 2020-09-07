@@ -50,11 +50,24 @@ export class RoleService {
     return role.role_permissions;
   }
 
-  addRole(name: string, weight: number) {
-    return this.http.post(`${this.baseUrl}/role`, {
-      name: name,
-      weigth: weight,
-    });
+  addRole(name: string) {
+    let weight =
+      Math.max.apply(
+        Math,
+        this.roles.map(function (o) {
+          return o.weight;
+        })
+      ) + 1;
+    console.log(weight);
+    return this.http
+      .post<Role>(`${this.baseUrl}/role`, {
+        name: name,
+        weight: weight,
+      })
+      .subscribe((newRole) => {
+        this.roles.push(newRole);
+        this.rolesChanged.next(this.roles.slice());
+      });
   }
 
   updateWeight(role: Role, weight: number) {
