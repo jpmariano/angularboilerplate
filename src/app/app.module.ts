@@ -10,10 +10,10 @@ import { FullWidthModule } from './layouts/fullwidth/fullwidth.module';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/authentication-interceptor.service';
-import { ProfileComponent } from './modules/profile/profile.component';
+import { PermissionDeleteComponent } from './modules/permissions/permission-delete/permission-delete.component';
 
 @NgModule({
-  declarations: [AppComponent ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

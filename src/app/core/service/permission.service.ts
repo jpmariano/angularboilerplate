@@ -65,6 +65,16 @@ export class PermissionService {
     return bool;
   }
 
+  deletePermission(id: number, pid:number){
+    this.permissions.splice(id, 1);
+    this.permissionsChanged.next(this.permissions.slice());
+    return this.http.delete(`${this.baseUrl}/permissions/${pid}`, {
+      responseType: 'text',
+    }).subscribe((response) => {
+      console.log(response);
+    });
+  }
+
   getPermissionName(pid: number) {
     return this.search(pid, this.permissions);
   }

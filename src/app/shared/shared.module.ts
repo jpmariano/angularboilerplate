@@ -7,6 +7,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DropdownDirective } from './dropdown.directive';
+import { RemoveUnderscorePipe } from './remove-underscore.pipe';
+import { SortByPipe } from './sortby.pipe';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { DropdownDirective } from './dropdown.directive';
     SidebarComponent,
     FooterComponent,
     ModalComponent,
-    DropdownDirective
+    DropdownDirective,
+    RemoveUnderscorePipe,
+    SortByPipe
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ import { DropdownDirective } from './dropdown.directive';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    ModalComponent
+    ModalComponent,
+    RemoveUnderscorePipe,
+    SortByPipe
   ]
 })
 export class SharedModule { }

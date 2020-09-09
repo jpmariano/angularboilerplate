@@ -19,12 +19,11 @@ import { PermissionAddComponent } from 'src/app/modules/permissions/permission-a
 import { RoleDetailsComponent } from 'src/app/modules/roles/role-details/role-details.component';
 import { RoleEditComponent } from 'src/app/modules/roles/role-edit/role-edit.component';
 import { RoleDeleteComponent } from 'src/app/modules/roles/role-delete/role-delete.component';
-import { RemoveUnderscorePipe } from '../../shared/remove-underscore.pipe';
-import { SortByPipe } from '../../shared/sortby.pipe';
 import { UsersListComponent } from 'src/app/modules/users/users-list/users-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { PermissionDeleteComponent } from 'src/app/modules/permissions/permission-delete/permission-delete.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,6 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     UserEditComponent,
     UserDeleteComponent,
     UsersListComponent,
-    RemoveUnderscorePipe,
     RolesComponent,
     RoleAddComponent,
     RoleDetailsComponent,
@@ -44,7 +42,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     RoleDeleteComponent,
     PermissionsComponent,
     PermissionAddComponent,
-    SortByPipe
+    PermissionDeleteComponent
   ],
   imports: [
     CommonModule,

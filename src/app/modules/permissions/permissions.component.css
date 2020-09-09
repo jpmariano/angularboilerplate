@@ -27,6 +27,10 @@
   width: 10%;
 }
 
+.col-xxs {
+  width: 5%;
+}
+
 .col-sm {
   width: 20%;
 }

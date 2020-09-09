@@ -33,6 +33,9 @@
             (change)="onChange($event, i, permission, role)"
           />
         </td>
+        <td class="col-xxs">
+          <app-permission-delete [permission]="permission" [id]="i"></app-permission-delete>
+        </td>
       </tr>
     </tbody>
   </table>
