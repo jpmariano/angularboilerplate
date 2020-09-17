@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
-import { User } from '../../core/model/user.model';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-users',

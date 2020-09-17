@@ -1,56 +1,58 @@
-<div class="form-inline mb-2">
-  <div class="form-group d-block mr-1">
-    <label class="justify-content-start small" for="username">Username</label>
-    <input
-      type="text"
-      id="username"
-      class="form-control"
-      [(ngModel)]="userKeyword"
-    />
-  </div>
-  <div class="form-group d-block mx-1">
-    <label class="justify-content-start small" for="status">Status</label>
-    <select class="form-control" id="status">
-      <option selected="selected">---Any---</option>
-      <option *ngFor="let status of statuses" [value]="status">
-        {{ status }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group d-block mx-1">
-    <label class="justify-content-start small" for="roles">Roles</label>
-    <select class="form-control" id="roles">
-      <option selected="selected">---Any---</option>
-      <option *ngFor="let role of roles; let i = index" [value]="role.name">
-        {{ role.name | removeUnderscore | titlecase }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group d-block mx-1">
-    <label class="justify-content-start small" for="permission"
-      >Permission</label
-    >
-    <select class="form-control" id="permission">
-      <option selected="selected">---Any---</option>
-      <option
-        *ngFor="let permission of permissions; let i = index"
-        [value]="permission.name"
+<form (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+  <div class="form-inline mb-2" formGroupName="queryParams">
+    <div class="form-group d-block mr-1">
+      <label class="justify-content-start small" for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        formControlName="username"
+      />
+    </div>
+    <div class="form-group d-block mx-1">
+      <label class="justify-content-start small" for="status">Status</label>
+      <select class="form-control" id="status" formControlName="status">
+        <option selected="selected">---Any---</option>
+        <option *ngFor="let status of statuses" [ngValue]="status">
+          {{ status }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group d-block mx-1">
+      <label class="justify-content-start small" for="roles">Roles</label>
+      <select class="form-control" id="roles" formControlName="role">
+        <option selected="selected">---Any---</option>
+        <option *ngFor="let role of roles; let i = index" [ngValue]="role.rid">
+          {{ role.name | removeUnderscore | titlecase }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group d-block mx-1">
+      <label class="justify-content-start small" for="permission"
+        >Permission</label
       >
-        {{ permission.name | removeUnderscore | titlecase }}
-      </option>
-    </select>
+      <select class="form-control" id="permission" formControlName="permission">
+        <option selected="selected">---Any---</option>
+        <option
+          *ngFor="let permission of permissions; let i = index"
+          [ngValue]="permission.pid"
+        >
+          {{ permission.name | removeUnderscore | titlecase }}
+        </option>
+      </select>
+    </div>
   </div>
-</div>
-<div class="mb-2">
-  <button class="btn btn-primary mr-2 rounded-pill">
-    <i class="fa fa-check"></i>
-    Apply
-  </button>
-  <button class="btn btn-light rounded-pill border-dark">
-    <i class="fa fa-close"></i>
-    Clear
-  </button>
-</div>
+  <div class="mb-2">
+    <button class="btn btn-primary mr-2 rounded-pill" type="submit">
+      <i class="fa fa-check"></i>
+      Apply
+    </button>
+    <button class="btn btn-light rounded-pill border-dark" (click)="onClear()">
+      <i class="fa fa-close"></i>
+      Clear
+    </button>
+  </div>
+</form>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -64,7 +66,6 @@
     <tr
       *ngFor="
         let user of users
-          | filter: userKeyword
           | paginate
             : {
                 id: 'listing_pagination',

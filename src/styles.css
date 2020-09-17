@@ -1,6 +1,7 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 body {
   height: 100%;
+  font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
 }
 
 .raised-button {

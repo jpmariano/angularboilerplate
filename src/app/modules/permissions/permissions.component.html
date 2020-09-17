@@ -7,6 +7,7 @@
         <th *ngFor="let role of roles" class="text-center">
           {{ role.name | removeUnderscore | titlecase }}
         </th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
